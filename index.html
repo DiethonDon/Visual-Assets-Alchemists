@@ -43,7 +43,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            max-width: 100vw;
+            width: 100%;
             position: relative;
         }
 
@@ -746,39 +746,47 @@
             width: 80px;
         }
 
-        /* EDITING EXPERTISE SECTION - Circle Layout */
+        /* EDITING EXPERTISE SECTION - FIXED Circle Layout */
         .editing-expertise {
             background: var(--gray-light);
-            padding: 80px 0;
+            padding: 100px 0;
             position: relative;
+            overflow: hidden;
+        }
+
+        .tools-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
         }
 
         .tool-card {
             background: var(--white);
-            padding: 40px;
+            padding: 50px 30px;
             text-align: center;
             border: 2px solid transparent;
             transition: var(--transition);
             opacity: 0;
             transform: translateY(30px);
             border-radius: 50%;
-            width: 220px;
-            height: 220px;
-            margin: 0 auto;
+            width: 320px;
+            height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            will-change: transform;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .tool-card.animated {
@@ -798,14 +806,57 @@
 
         .tool-card:hover {
             border-color: var(--accent);
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
 
         .tool-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
             color: var(--accent);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--black);
+            line-height: 1.3;
+            max-width: 90%;
+        }
+
+        .tool-card p {
+            font-size: 0.95rem;
+            color: var(--gray-medium);
+            line-height: 1.5;
+            max-width: 90%;
+            margin: 0 auto;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Add decorative elements */
+        .tool-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, transparent 60%, rgba(212, 175, 55, 0.1) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .tool-card:hover:before {
+            opacity: 1;
         }
 
         /* UNIQUE GALLERY LAYOUT - Parallax Effect */
@@ -1754,7 +1805,6 @@
             
             .why-grid,
             .pricing-grid,
-            .tools-grid,
             .philosophy-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1765,6 +1815,22 @@
             
             .header-social {
                 display: none;
+            }
+            
+            /* Tool cards for large tablets */
+            .tools-grid {
+                gap: 30px;
+            }
+            
+            .tool-card {
+                width: 280px;
+                height: 280px;
+                padding: 40px 25px;
+            }
+            
+            .tool-icon {
+                font-size: 3rem;
+                margin-bottom: 20px;
             }
         }
 
@@ -1793,7 +1859,6 @@
             .services-grid,
             .why-grid,
             .pricing-grid,
-            .tools-grid,
             .philosophy-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -1859,9 +1924,23 @@
                 max-width: 300px;
             }
             
+            /* Tool cards for tablets */
+            .tools-grid {
+                gap: 25px;
+            }
+            
             .tool-card {
-                width: 200px;
-                height: 200px;
+                width: 260px;
+                height: 260px;
+                padding: 35px 20px;
+            }
+            
+            .tool-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.9rem;
             }
 
             /* Fix text clipping on mobile */
@@ -1942,6 +2021,32 @@
                 padding-left: 15px;
                 margin: 15px 0;
             }
+            
+            /* Tool cards for mobile */
+            .tools-grid {
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tool-card {
+                width: 240px;
+                height: 240px;
+                padding: 30px 20px;
+            }
+            
+            .tool-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .tool-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1986,12 +2091,6 @@
                 padding: 0 20px;
             }
             
-            .tool-card {
-                width: 180px;
-                height: 180px;
-                padding: 30px;
-            }
-            
             .why-point {
                 clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
             }
@@ -2024,6 +2123,17 @@
 
             .contact-detail {
                 padding: 12px;
+            }
+            
+            /* Tool cards for small mobile */
+            .tool-card {
+                width: 220px;
+                height: 220px;
+                padding: 25px 15px;
+            }
+            
+            .tool-card h3 {
+                font-size: 1.1rem;
             }
         }
 
@@ -2235,9 +2345,9 @@
         </div>
     </section>
 
-    <!-- EDITING EXPERTISE SECTION - Circle Layout -->
+    <!-- EDITING EXPERTISE SECTION - FIXED Circle Layout -->
     <section class="editing-expertise tight-section">
-        <div class="container">
+        <div class="tools-container">
             <div class="section-intro">
                 <h2>Digital Alchemy Studio</h2>
                 <p class="artistic-caption">Where raw captures undergo metamorphosis—emerging as cinematic masterpieces through the crucible of digital artistry.</p>
@@ -2261,4 +2371,1054 @@
                 </div>
                 
                 <div class="tool-card">
-                    <div
+                    <div class="tool-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Adobe After Effects</h3>
+                    <p>Motion graphics, visual effects, and animation to create engaging property presentations that stand out.</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D & Virtual Staging</h3>
+                    <p>Transforming empty spaces into beautifully furnished homes using advanced 3D rendering and virtual staging techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIQUE GALLERY LAYOUT - Parallax Effect -->
+    <section class="unique-gallery tight-section" id="gallery">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Gallery of Visual Poetry</h2>
+                <p class="artistic-caption">Where architecture meets emotion, light dances with shadow, and spaces become stories waiting to be lived.</p>
+            </div>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Residential</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Cliffside Residence</h3>
+                        <p style="font-size: 0.9rem;">Athens, Greece</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Urban Loft">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Commercial</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Downtown Office Space</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Historic Mansion">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Heritage</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Neoclassical Villa</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Minimalist Apartment">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Residential</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Minimalist Apartment</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1564013796-bb4cbcb5b5ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coastal Villa">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Residential</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Coastal Villa</h3>
+                        <p style="font-size: 0.9rem;">Greek Islands</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate Office">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Commercial</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Corporate Headquarters</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Architecture">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Architectural</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Modernist Masterpiece</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contemporary Home">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Residential</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Contemporary Home</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1567496898669-ee935f003f30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior Design">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Interior</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Luxury Interior</h3>
+                        <p style="font-size: 0.9rem;">Athens</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rural Estate">
+                    <div class="gallery-overlay">
+                        <div class="gallery-category">Estate</div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Country Estate</h3>
+                        <p style="font-size: 0.9rem;">Greek Countryside</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner - Wave Animation -->
+    <section class="stats-banner tight-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" style="animation: slideUp 1s 0.2s ease forwards">
+                    <div class="stat-number">61%</div>
+                    <div class="stat-label">More Views</div>
+                    <p class="stat-detail">Professional photos receive 61% more views than listings without them—the difference between seen and remembered.</p>
+                </div>
+                <div class="stat-item" style="animation: slideUp 1s 0.4s ease forwards">
+                    <div class="stat-number">47%</div>
+                    <div class="stat-label">Faster Sales</div>
+                    <p class="stat-detail">Properties with professional photography sell 47% faster—turning inventory into income with velocity.</p>
+                </div>
+                <div class="stat-item" style="animation: slideUp 1s 0.6s ease forwards">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Client Retention</div>
+                    <p class="stat-detail">Nearly all clients return—trust forged through visual transformations that consistently deliver results.</p>
+                </div>
+                <div class="stat-item" style="animation: slideUp 1s 0.8s ease forwards">
+                    <div class="stat-number">48h</div>
+                    <div class="stat-label">Alchemy Speed</div>
+                    <p class="stat-detail">From capture to masterpiece—all within 48 hours of visual alchemy. Speed married to excellence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Folding Card Animation -->
+    <section id="services" class="services tight-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>The Alchemist's Toolkit</h2>
+                <p class="artistic-caption">From single shots to complete visual symphonies—every property deserves its magnum opus.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Residential Visual Poetry</h3>
+                    <p>Full-scale interior and exterior photography for luxury homes, apartments, and estates—where light paints emotion on walls.</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Twilight exterior sonnets</li>
+                        <li>Detailed interior compositions</li>
+                        <li>Lifestyle staging photography</li>
+                        <li>HDR blending for perfect exposure</li>
+                    </ul>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Commercial Architecture Portraits</h3>
+                    <p>Professional photography for office spaces, retail locations, and commercial properties—where function meets visual philosophy.</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Architectural detail studies</li>
+                        <li>Space planning compositions</li>
+                        <li>Brand integration narratives</li>
+                        <li>Corporate environmental portraits</li>
+                    </ul>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Cinematic Property Symphonies</h3>
+                    <p>Immersive video experiences that tell the story of your property through motion—architecture in fluid poetry.</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>4K cinematic storytelling</li>
+                        <li>Professional narration</li>
+                        <li>Social media visual haikus</li>
+                        <li>Emotional score composition</li>
+                    </ul>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Social Media Alchemy</h3>
+                    <p>SMM-ready content templates and social media listing management—turning properties into trending stories.</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>Ready-to-use social media templates</li>
+                        <li>Platform-optimized visual narratives</li>
+                        <li>Strategic hashtag poetry</li>
+                        <li>Engagement analytics alchemy</li>
+                        <li>Listing promotion masterpieces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials - 3D Flip Cards -->
+    <section class="testimonials tight-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Echoes of Satisfaction</h2>
+                <p class="artistic-caption">Voices of trust from those who've witnessed the alchemy firsthand.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <p class="testimonial-text">"The photography elevated our €8M listing to attract international buyers. The attention to light and composition was exceptional."</p>
+                    <p class="testimonial-author">Maria Papadopoulos, Luxury Properties Athens</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"Working with Visual Assets Alchemists was transformative. They don't just take photos—they create art that sells properties."</p>
+                    <p class="testimonial-author">Nikos Demetriou, Urban Spaces Greece</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"The cinematic tour they produced for our development attracted 300% more qualified leads than traditional photography."</p>
+                    <p class="testimonial-author">Alexandra Costa, Development Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATED PRICING SECTION - Glass Morphism -->
+    <section class="pricing-section tight-section" id="pricing">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Investment in Visual Alchemy</h2>
+                <p class="artistic-caption" style="color: rgba(255,255,255,0.8);">Transparent tiers for transformative results—excellence should be accessible, not elusive.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Visual Foundation</h3>
+                    <div class="price">€70 <span>Professional photography session</span></div>
+                    <a href="#contact" class="express-badge">48-Hour Masterpiece Delivery</a>
+                    <ul class="pricing-features">
+                        <li>Professional Photography Package</li>
+                        <li>25+ Curated Images</li>
+                        <li>Advanced Editing & Enhancement</li>
+                        <li>48-Hour Standard Turnaround</li>
+                        <li>MLS-Ready Files</li>
+                        <li>Social Media Preview Images</li>
+                        <li>7 Social Media Templates</li>
+                        <li>Basic Virtual Staging (1 room)</li>
+                    </ul>
+                    <a href="#contact" class="btn" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3); width: 100%; justify-content: center;">Begin Transformation</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>PRO Alchemy Package</h3>
+                    <div class="price">€120 <span>Photo + Video complete solution</span></div>
+                    <a href="#contact" class="express-badge">48-Hour Masterpiece Delivery</a>
+                    <ul class="pricing-features">
+                        <li>Everything in Visual Foundation</li>
+                        <li>+ Cinematic Video Tour (2-3 min)</li>
+                        <li>Twilight/Night Photography</li>
+                        <li>Social Media Clips (5-7)</li>
+                        <li>Premium Color Grading</li>
+                        <li>48-Hour Standard Delivery</li>
+                        <li>12 Social Media Templates</li>
+                        <li>Hashtag Strategy & Analytics</li>
+                        <li>Virtual Staging (2 rooms)</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-accent" style="width: 100%; justify-content: center;">Craft Your Story</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium Alchemy Suite</h3>
+                    <div class="price">€250 <span>Complete visual transformation</span></div>
+                    <a href="#contact" class="express-badge">48-Hour Masterpiece Delivery</a>
+                    <ul class="pricing-features">
+                        <li>Everything in PRO Package</li>
+                        <li>+ Extended Video Tour (3-5 min)</li>
+                        <li>Advanced Virtual Staging (3 rooms)</li>
+                        <li>Professional Floor Plans</li>
+                        <li>Branded Marketing Materials</li>
+                        <li>Priority 48-Hour Service</li>
+                        <li>Unlimited Revisions</li>
+                        <li>1 Year Archive Storage</li>
+                        <li>Personal Branding Session</li>
+                        <li>Full SMM Package + Monthly Calendar</li>
+                    </ul>
+                    <a href="#contact" class="btn" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3); width: 100%; justify-content: center;">Unleash Magic</a>
+                </div>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.7); margin-top: 40px; font-size: 0.9rem;">
+                <i class="fas fa-info-circle" style="margin-right: 10px;"></i>
+                All packages include 48-hour standard delivery. Custom enterprise solutions available for agencies and developers.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section - Modern Form -->
+    <section id="contact" class="contact-section tight-section">
+        <div class="container">
+            <h2>Begin Your Visual Journey</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Ready to Transmute Your Properties?</h3>
+                    <p>Let's discuss how visual alchemy can elevate your listings and accelerate your sales through emotional resonance.</p>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Business Email</span>
+                        <a href="mailto:home@visualchemy.gr">home@visualchemy.gr</a>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Personal Email</span>
+                        <a href="mailto:nakosrousis@outlook.com">nakosrousis@outlook.com</a>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+6986729570">+6986729570</a> / <a href="tel:+2104252713">2104252713</a>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Based in</span>
+                        <p>Athens, Greece</p>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Editing Tools</span>
+                        <p>Adobe Creative Suite Expert: Photoshop, Lightroom, Premiere Pro, After Effects</p>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <span class="contact-label">Follow Us</span>
+                        <div class="footer-social">
+                            <a href="https://instagram.com/gzv.photolab" target="_blank" title="GZV Photo Lab">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://instagram.com/NR_Arts_" target="_blank" title="NR Arts">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://instagram.com/VAA_Studio" target="_blank" title="VAA Studio">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <h3 style="margin-bottom: 30px;">Request a Quote</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Select Package</label>
+                            <select class="form-select">
+                                <option value="">Choose a package</option>
+                                <option value="foundation">Visual Foundation (€70)</option>
+                                <option value="pro">PRO Alchemy Package (€120)</option>
+                                <option value="premium">Premium Alchemy Suite (€250)</option>
+                                <option value="custom">Custom Enterprise Solution</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Property Type</label>
+                            <select class="form-select">
+                                <option value="">Select property type</option>
+                                <option value="residential">Residential Home</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="villa">Villa</option>
+                                <option value="commercial">Commercial Property</option>
+                                <option value="development">Development Project</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Property Location</label>
+                            <input type="text" class="form-input" placeholder="Enter property address or area">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Additional Services</label>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="services[]" value="express">
+                                    <span>Priority 24-Hour Delivery</span>
+                                </label>
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="services[]" value="virtual-staging">
+                                    <span>Virtual Staging</span>
+                                </label>
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="services[]" value="floor-plans">
+                                    <span>Floor Plans</span>
+                                </label>
+                                <label class="form-checkbox">
+                                    <input type="checkbox" name="services[]" value="twilight">
+                                    <span>Twilight Photography</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Project Details</label>
+                            <textarea class="form-textarea" placeholder="Tell us about your property, timeline, and specific requirements..." rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" required>
+                                <span>I agree to receive updates and promotional materials</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-accent" style="width: 100%; padding: 16px; font-size: 1rem;">
+                            <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>
+                            Send Request
+                        </button>
+                    </form>
+                    
+                    <!-- ROI Calculator Form -->
+                    <div class="roi-form">
+                        <h4 style="margin-bottom: 20px; color: var(--accent);">Alchemy ROI Calculator</h4>
+                        <div class="form-group">
+                            <label class="form-label">Property Value (€)</label>
+                            <input type="number" class="form-input" id="propertyValue" placeholder="e.g., 500000" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Current Photos Quality</label>
+                            <select class="form-select" id="photoQuality">
+                                <option value="1">Amateur/Phone Photos</option>
+                                <option value="1.15">Basic Professional</option>
+                                <option value="1.32">Premium Professional (Our Standard)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" id="calculateROI" class="btn" style="width: 100%; background: var(--accent); color: var(--black); border: none;">
+                            Calculate Alchemical Return
+                        </button>
+                        
+                        <div class="roi-result" id="roiResult">
+                            <h4 style="color: var(--accent); margin-bottom: 10px;">Alchemy ROI Analysis</h4>
+                            <p id="roiText"></p>
+                            <p id="investmentReturn" style="margin-top: 10px; font-weight: 600;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section - Card Stack -->
+    <section class="social-media-section tight-section" id="social">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Our Social Media Presence</h2>
+                <p class="artistic-caption">Follow our journey and explore our visual storytelling across different creative platforms</p>
+            </div>
+            
+            <div class="social-links">
+                <div class="social-profile">
+                    <div class="social-profile-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>GZV Photo Lab</h3>
+                    <div class="social-handle">@gzv.photolab</div>
+                    <p>Professional real estate photography portfolio showcasing our finest architectural work.</p>
+                    <div class="social-followers">Architectural Photography • Real Estate • Greece</div>
+                    <a href="https://instagram.com/gzv.photolab" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
+                </div>
+                
+                <div class="social-profile">
+                    <div class="social-profile-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>NR Arts</h3>
+                    <div class="social-handle">@NR_Arts_</div>
+                    <p>Personal artistic portfolio featuring fine art, portraits, and creative visual explorations.</p>
+                    <div class="social-followers">Fine Art • Portraits • Creative • Greece</div>
+                    <a href="https://instagram.com/NR_Arts_" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
+                </div>
+                
+                <div class="social-profile">
+                    <div class="social-profile-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>VAA Studio</h3>
+                    <div class="social-handle">@VAA_Studio</div>
+                    <p>Behind-the-scenes, client work, and the business side of visual asset creation.</p>
+                    <div class="social-followers">Studio • Behind the Scenes • Client Work • Business</div>
+                    <a href="https://instagram.com/VAA_Studio" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-signature">Visual Assets Alchemists</div>
+                    <p>Real Estate Media Specialists transforming architectural spaces into compelling visual narratives through photography, cinematic storytelling, and social media management.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="#value" style="color: rgba(255,255,255,0.6); text-decoration: none;">The Value</a></li>
+                        <li><a href="#philosophy" style="color: rgba(255,255,255,0.6); text-decoration: none;">Our Philosophy</a></li>
+                        <li><a href="#why" style="color: rgba(255,255,255,0.6); text-decoration: none;">Why Choose Us</a></li>
+                        <li><a href="#services" style="color: rgba(255,255,255,0.6); text-decoration: none;">Services</a></li>
+                        <li><a href="#gallery" style="color: rgba(255,255,255,0.6); text-decoration: none;">Gallery</a></li>
+                        <li><a href="#pricing" style="color: rgba(255,255,255,0.6); text-decoration: none;">Investment</a></li>
+                        <li><a href="#social" style="color: rgba(255,255,255,0.6); text-decoration: none;">Social Media</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul style="list-style: none;">
+                        <li>Residential Photography</li>
+                        <li>Commercial Photography</li>
+                        <li>Cinematic Video Tours</li>
+                        <li>Social Media Management</li>
+                        <li>Professional Editing</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact & Social</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6);">Athens, Greece</p>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Phone: +6986729570<br>2104252713</p>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Email: home@visualchemy.gr</p>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Personal: nakosrousis@outlook.com</p>
+                    
+                    <div class="footer-social">
+                        <a href="https://instagram.com/gzv.photolab" target="_blank" title="GZV Photo Lab">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://instagram.com/NR_Arts_" target="_blank" title="NR Arts">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://instagram.com/VAA_Studio" target="_blank" title="VAA Studio">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 Visual Assets Alchemists | Real Estate Media Specialists. All rights reserved. | Adobe Creative Suite Expert: Photoshop, Lightroom, Premiere Pro, After Effects</p>
+                <p style="margin-top: 10px;">Follow us on Instagram: 
+                    <a href="https://instagram.com/gzv.photolab" target="_blank" style="color: var(--accent); text-decoration: none;">@gzv.photolab</a> • 
+                    <a href="https://instagram.com/NR_Arts_" target="_blank" style="color: var(--accent); text-decoration: none;">@NR_Arts_</a> • 
+                    <a href="https://instagram.com/VAA_Studio" target="_blank" style="color: var(--accent); text-decoration: none;">@VAA_Studio</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced JavaScript with all features
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+
+            // Mobile Navigation
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                this.classList.toggle('fa-times');
+                this.classList.toggle('fa-bars');
+            });
+
+            // Close mobile nav on link click
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    mobileToggle.classList.remove('fa-times');
+                    mobileToggle.classList.add('fa-bars');
+                });
+            });
+
+            // Animate elements on scroll with different animations per section
+            const animateOnScroll = () => {
+                // Philosophy Cards - Sliding Animation
+                const philosophyCards = document.querySelectorAll('.philosophy-card');
+                philosophyCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (cardPosition < screenPosition) {
+                        card.classList.add('animated');
+                    }
+                });
+
+                // Why Points - Hexagon Animation
+                const whyPoints = document.querySelectorAll('.why-point');
+                whyPoints.forEach((point, index) => {
+                    const pointPosition = point.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (pointPosition < screenPosition) {
+                        setTimeout(() => {
+                            point.classList.add('animated');
+                        }, index * 100);
+                    }
+                });
+
+                // Tool Cards - Circle Animation
+                const toolCards = document.querySelectorAll('.tool-card');
+                toolCards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, index * 200);
+                    }
+                });
+
+                // Service Items - Fold Animation
+                const serviceItems = document.querySelectorAll('.service-item');
+                serviceItems.forEach((item, index) => {
+                    const itemPosition = item.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (itemPosition < screenPosition) {
+                        setTimeout(() => {
+                            item.classList.add('animated');
+                        }, index * 150);
+                    }
+                });
+
+                // Pricing Cards - Float Up Animation
+                const pricingCards = document.querySelectorAll('.pricing-card');
+                pricingCards.forEach((card, index) => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (cardPosition < screenPosition) {
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, index * 200);
+                    }
+                });
+
+                // Social Profiles - Stack Animation
+                const socialProfiles = document.querySelectorAll('.social-profile');
+                socialProfiles.forEach((profile, index) => {
+                    const profilePosition = profile.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (profilePosition < screenPosition) {
+                        setTimeout(() => {
+                            profile.classList.add('animated');
+                        }, index * 200);
+                    }
+                });
+
+                // Stats Items Animation
+                const statItems = document.querySelectorAll('.stat-item');
+                statItems.forEach((item, index) => {
+                    const itemPosition = item.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (itemPosition < screenPosition) {
+                        const delay = index * 200;
+                        item.style.animation = `slideUp 1s ${delay}ms ease forwards`;
+                    }
+                });
+            };
+
+            // Initial animation check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Parallax effect for floating elements
+            window.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const floatingElements = document.querySelectorAll('.floating-element');
+                floatingElements.forEach((el, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    const xMove = (x * 100 * speed) - 50;
+                    const yMove = (y * 100 * speed) - 50;
+                    
+                    el.style.transform = `translate(${xMove}px, ${yMove}px) rotate(${x * 30}deg)`;
+                });
+
+                // Gallery parallax effect
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                galleryItems.forEach((item, index) => {
+                    const depth = (index % 5) * 10;
+                    const xParallax = (x * depth) - (depth / 2);
+                    const yParallax = (y * depth) - (depth / 2);
+                    
+                    if (!item.classList.contains('hovering')) {
+                        item.style.transform = `translate3d(${xParallax}px, ${yParallax}px, 0)`;
+                    }
+                });
+            });
+
+            // Gallery hover effects with 3D
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.classList.add('hovering');
+                    this.style.transform = 'translateZ(20px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.classList.remove('hovering');
+                    this.style.transform = 'translateZ(0) scale(1)';
+                });
+            });
+
+            // Price cards interaction
+            const priceCards = document.querySelectorAll('.pricing-card');
+            priceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = 'translateY(-15px) scale(1.02)';
+                    } else {
+                        this.style.transform = 'translateY(-15px) scale(1.07)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    } else {
+                        this.style.transform = 'scale(1.05)';
+                    }
+                });
+            });
+
+            // Smooth scroll with offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        window.scrollTo({
+                            top: targetElement.offsetTop - headerHeight - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Value stats animation on load
+            const valueStats = document.querySelectorAll('.value-stat');
+            valueStats.forEach((stat, index) => {
+                stat.style.animationDelay = `${0.7 + (index * 0.1)}s`;
+            });
+
+            // Testimonial slider with 3D flip
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            let currentTestimonial = 0;
+
+            function showTestimonial(index) {
+                testimonialSlides.forEach(slide => slide.classList.remove('active'));
+                testimonialSlides[index].classList.add('active');
+                
+                // Add flip animation
+                testimonialSlides[index].style.animation = 'flipIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+            }
+
+            // Auto-rotate testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+
+            // Enhanced Contact Form Submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    name: this.querySelector('input[type="text"]').value,
+                    email: this.querySelector('input[type="email"]').value,
+                    phone: this.querySelector('input[type="tel"]').value,
+                    package: this.querySelector('select').value,
+                    propertyType: this.querySelectorAll('select')[1].value,
+                    location: this.querySelectorAll('input[type="text"]')[2].value,
+                    services: Array.from(this.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value),
+                    details: this.querySelector('textarea').value
+                };
+                
+                let totalPrice = 0;
+                let basePrice = 0;
+                
+                // Calculate base price
+                switch(formData.package) {
+                    case 'foundation': basePrice = 70; break;
+                    case 'pro': basePrice = 120; break;
+                    case 'premium': basePrice = 250; break;
+                    case 'custom': basePrice = 0; break;
+                }
+                
+                totalPrice = basePrice;
+                
+                // Show success message with animation
+                let message = `🎉 Thank you for your inquiry, ${formData.name}!\n\n`;
+                message += `📋 Request Summary:\n`;
+                message += `• Package: ${this.querySelector('select').options[this.querySelector('select').selectedIndex].text}\n`;
+                message += `• Property Type: ${this.querySelectorAll('select')[1].options[this.querySelectorAll('select')[1].selectedIndex].text}\n`;
+                message += `• Priority Delivery: ${formData.services.includes('express') ? 'Yes' : 'No'}\n`;
+                
+                if (totalPrice > 0) {
+                    message += `• Estimated Investment: €${totalPrice}\n\n`;
+                }
+                
+                message += `We will respond within 24 hours to discuss your project details.`;
+                
+                // Create custom alert
+                const alertBox = document.createElement('div');
+                alertBox.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    background: white;
+                    padding: 40px;
+                    border-radius: 15px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    max-width: 500px;
+                    width: 90%;
+                    animation: alertPop 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                    border: 2px solid var(--accent);
+                `;
+                
+                alertBox.innerHTML = `
+                    <h3 style="color: var(--accent); margin-bottom: 20px; font-family: 'Cormorant Garamond', serif;">Request Sent Successfully!</h3>
+                    <div style="white-space: pre-line; margin-bottom: 30px; color: var(--gray-dark);">${message}</div>
+                    <button id="closeAlert" style="background: var(--accent); color: var(--black); border: none; padding: 12px 30px; font-weight: 600; cursor: pointer; width: 100%;">
+                        Close
+                    </button>
+                `;
+                
+                document.body.appendChild(alertBox);
+                
+                // Add overlay
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.8);
+                    backdrop-filter: blur(5px);
+                    z-index: 9998;
+                    animation: fadeIn 0.3s ease;
+                `;
+                document.body.appendChild(overlay);
+                
+                // Close alert
+                document.getElementById('closeAlert').addEventListener('click', function() {
+                    document.body.removeChild(alertBox);
+                    document.body.removeChild(overlay);
+                    // Reset form
+                    e.target.reset();
+                });
+                
+                // Close on overlay click
+                overlay.addEventListener('click', function() {
+                    document.body.removeChild(alertBox);
+                    document.body.removeChild(overlay);
+                    e.target.reset();
+                });
+            });
+
+            // ROI Calculator
+            document.getElementById('calculateROI').addEventListener('click', function() {
+                const propertyValue = parseFloat(document.getElementById('propertyValue').value);
+                const qualityMultiplier = parseFloat(document.getElementById('photoQuality').value);
+                
+                if (!propertyValue || propertyValue <= 0) {
+                    alert('Please enter a valid property value.');
+                    return;
+                }
+                
+                const potentialIncrease = propertyValue * (qualityMultiplier - 1);
+                const roiResult = document.getElementById('roiResult');
+                const roiText = document.getElementById('roiText');
+                const investmentReturn = document.getElementById('investmentReturn');
+                
+                let qualityText = '';
+                switch(qualityMultiplier) {
+                    case 1: qualityText = 'amateur photos'; break;
+                    case 1.15: qualityText = 'basic professional photos'; break;
+                    case 1.32: qualityText = 'premium professional photos'; break;
+                }
+                
+                roiText.innerHTML = `With ${qualityText}, your €${propertyValue.toLocaleString()} property could potentially increase in perceived value by approximately <strong>€${potentialIncrease.toLocaleString()}</strong>.`;
+                
+                investmentReturn.innerHTML = `🎯 That's a potential <strong style="color: var(--accent);">${((qualityMultiplier - 1) * 100).toFixed(0)}% increase</strong> in perceived property value!`;
+                
+                roiResult.classList.add('show');
+                
+                // Add animation to result
+                roiResult.style.animation = 'fadeIn 0.5s ease';
+            });
+
+            // Add animation to service icons on hover
+            const serviceIcons = document.querySelectorAll('.service-icon');
+            serviceIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.2) rotate(15deg)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0)';
+                });
+            });
+
+            // Add animation to why points on hover
+            const whyPoints = document.querySelectorAll('.why-point');
+            whyPoints.forEach(point => {
+                point.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.why-icon');
+                    icon.style.transform = 'scale(1.2) rotate(10deg)';
+                });
+                
+                point.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.why-icon');
+                    icon.style.transform = 'scale(1) rotate(0)';
+                });
+            });
+
+            // Social media profiles hover effect
+            const socialProfiles = document.querySelectorAll('.social-profile');
+            socialProfiles.forEach(profile => {
+                profile.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) rotateY(5deg)';
+                });
+                
+                profile.addEventListener('mouseleave', function() {
+                    if (this.classList.contains('animated')) {
+                        this.style.transform = 'translateY(0) rotateY(0)';
+                    } else {
+                        this.style.transform = 'translateY(30px) rotateY(20deg)';
+                    }
+                });
+            });
+
+            // Form input focus effects
+            const formInputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-5px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Initialize all animations
+            window.addEventListener('load', function() {
+                // Trigger initial animations
+                setTimeout(() => {
+                    animateOnScroll();
+                }, 500);
+                
+                // Add CSS for alert animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes alertPop {
+                        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+                        70% { transform: translate(-50%, -50%) scale(1.05); }
+                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            });
+            
+            // Fix for mobile scroll stability
+            let scrollPosition = 0;
+            window.addEventListener('scroll', function() {
+                scrollPosition = window.scrollY;
+            });
+            
+            // Prevent mobile address bar hiding/showing from breaking layout
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            
+            window.addEventListener('resize', () => {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            });
+        });
+    </script>
+</body>
+</html>
