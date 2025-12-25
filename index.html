@@ -109,7 +109,7 @@
         .philosophy-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; animation: floatIcon 3s ease-in-out infinite; }
         @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* Why Choose Me - UPDATED HEXAGONS */
+        /* Why Choose Me */
         .why-choose { background: var(--white); padding: 100px 0 60px; position: relative; overflow: hidden; }
         .section-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
         .section-intro h2 { margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--black) 0%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; opacity: 0; animation: fadeInScale 1s 0.3s ease forwards; padding: 0 20px; }
@@ -117,9 +117,8 @@
         .section-intro p { font-size: 1.2rem; color: var(--gray-dark); font-weight: 300; }
         .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 50px; position: relative; }
         
-        /* THE FIX IS HERE */
         .why-point {
-            padding: 90px 40px; /* Increased padding */
+            padding: 90px 40px; 
             background: var(--white);
             border: 2px solid transparent;
             position: relative;
@@ -135,7 +134,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 500px; /* Increased min-height to accommodate icons */
+            min-height: 480px; 
         }
 
         .why-point.animated { opacity: 1; transform: scale(1); animation: hexagonPop 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
@@ -150,7 +149,7 @@
         .why-point h3:after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--accent); transition: var(--transition); }
         .why-point:hover h3:after { width: 80px; }
 
-        /* Editing Expertise - Big Circles */
+        /* Editing Expertise */
         .editing-expertise { background: var(--gray-light); padding: 100px 0; position: relative; overflow: hidden; }
         .tools-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
         .tools-grid { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
@@ -397,6 +396,7 @@
                     <li><a href="#why">Why Choose Us</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#corporate">Corporate</a></li>
                     <li><a href="#pricing">Investment</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#social">Social Media</a></li>
@@ -473,10 +473,7 @@
 
     <section class="unique-gallery tight-section" id="gallery">
         <div class="container">
-            <div class="section-intro">
-                <h2>Gallery of Visual Poetry</h2>
-                <p class="artistic-caption">Where architecture meets emotion, light dances with shadow, and spaces become stories waiting to be lived.</p>
-            </div>
+            <div class="section-intro"><h2>Real Estate Gallery</h2><p class="artistic-caption">Where architecture meets emotion, light dances with shadow, and spaces become stories waiting to be lived.</p></div>
             <div class="gallery-masonry">
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa"><div class="gallery-overlay"><div class="gallery-category">Residential</div><h3 style="font-size: 1.4rem; margin-bottom: 5px;">Cliffside Residence</h3><p style="font-size: 0.9rem;">Athens, Greece</p></div></div>
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Urban Loft"><div class="gallery-overlay"><div class="gallery-category">Commercial</div><h3 style="font-size: 1.4rem; margin-bottom: 5px;">Downtown Office Space</h3><p style="font-size: 0.9rem;">Athens</p></div></div>
@@ -488,6 +485,24 @@
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contemporary Home"><div class="gallery-overlay"><div class="gallery-category">Residential</div><h3 style="font-size: 1.4rem; margin-bottom: 5px;">Contemporary Home</h3><p style="font-size: 0.9rem;">Athens</p></div></div>
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1567496898669-ee935f003f30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Interior Design"><div class="gallery-overlay"><div class="gallery-category">Interior</div><h3 style="font-size: 1.4rem; margin-bottom: 5px;">Luxury Interior</h3><p style="font-size: 0.9rem;">Athens</p></div></div>
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rural Estate"><div class="gallery-overlay"><div class="gallery-category">Estate</div><h3 style="font-size: 1.4rem; margin-bottom: 5px;">Country Estate</h3><p style="font-size: 0.9rem;">Greek Countryside</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="unique-gallery tight-section" id="corporate" style="background: var(--gray-light);">
+        <div class="container">
+            <div class="section-intro"><h2>Corporate Gallery</h2><p class="artistic-caption">Professional portraits and brand narratives that define modern business.</p></div>
+            <div class="gallery-masonry">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Corporate</div><h3>Executive Portrait</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Team</div><h3>Board Meeting</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Portrait</div><h3>CEO Profile</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Brand</div><h3>Office Culture</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Tech</div><h3>Innovation Hub</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Workspace</div><h3>Creative Studio</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Event</div><h3>Annual Summit</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Team</div><h3>Collaboration</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Meeting</div><h3>Strategy Session</h3></div></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"><div class="gallery-overlay"><div class="gallery-category">Professional</div><h3>Headshot</h3></div></div>
             </div>
         </div>
     </section>
@@ -621,7 +636,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col"><div class="footer-signature">Visual Assets Alchemists</div><p>Real Estate Media Specialists transforming architectural spaces into compelling visual narratives through photography, cinematic storytelling, and social media management.</p></div>
-                <div class="footer-col"><h3>Quick Links</h3><ul style="list-style: none;"><li><a href="#value" style="color: rgba(255,255,255,0.6); text-decoration: none;">The Value</a></li><li><a href="#philosophy" style="color: rgba(255,255,255,0.6); text-decoration: none;">Our Philosophy</a></li><li><a href="#why" style="color: rgba(255,255,255,0.6); text-decoration: none;">Why Choose Us</a></li><li><a href="#services" style="color: rgba(255,255,255,0.6); text-decoration: none;">Services</a></li><li><a href="#gallery" style="color: rgba(255,255,255,0.6); text-decoration: none;">Gallery</a></li><li><a href="#pricing" style="color: rgba(255,255,255,0.6); text-decoration: none;">Investment</a></li><li><a href="#social" style="color: rgba(255,255,255,0.6); text-decoration: none;">Social Media</a></li></ul></div>
+                <div class="footer-col"><h3>Quick Links</h3><ul style="list-style: none;"><li><a href="#value" style="color: rgba(255,255,255,0.6); text-decoration: none;">The Value</a></li><li><a href="#philosophy" style="color: rgba(255,255,255,0.6); text-decoration: none;">Our Philosophy</a></li><li><a href="#why" style="color: rgba(255,255,255,0.6); text-decoration: none;">Why Choose Us</a></li><li><a href="#services" style="color: rgba(255,255,255,0.6); text-decoration: none;">Services</a></li><li><a href="#gallery" style="color: rgba(255,255,255,0.6); text-decoration: none;">Gallery</a></li><li><a href="#corporate" style="color: rgba(255,255,255,0.6); text-decoration: none;">Corporate</a></li><li><a href="#pricing" style="color: rgba(255,255,255,0.6); text-decoration: none;">Investment</a></li><li><a href="#social" style="color: rgba(255,255,255,0.6); text-decoration: none;">Social Media</a></li></ul></div>
                 <div class="footer-col"><h3>Services</h3><ul style="list-style: none;"><li>Residential Photography</li><li>Commercial Photography</li><li>Cinematic Video Tours</li><li>Social Media Management</li><li>Professional Editing</li></ul></div>
                 <div class="footer-col"><h3>Contact & Social</h3><p style="color: rgba(255, 255, 255, 0.6);">Athens, Greece</p><p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Phone: +6986729570<br>2104252713</p><p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Email: home@visualchemy.gr</p><p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Personal: nakosrousis@outlook.com</p><div class="footer-social"><a href="https://instagram.com/gzv.photolab" target="_blank" title="GZV Photo Lab"><i class="fab fa-instagram"></i></a><a href="https://instagram.com/NR_Arts_" target="_blank" title="NR Arts"><i class="fab fa-instagram"></i></a><a href="https://instagram.com/VAA_Studio" target="_blank" title="VAA Studio"><i class="fab fa-instagram"></i></a></div></div>
             </div>
@@ -825,7 +840,3 @@
     </script>
 </body>
 </html>
-
-
-
-
