@@ -81,7 +81,6 @@
         .investment-philosophy { background: #f8f8f8; padding: 80px 0; text-align: center; }
         .philosophy-container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         .philosophy-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 40px; position: relative; display: inline-block; padding-bottom: 15px; }
-        @keyframes slideDownTitle { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
         .philosophy-title:after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 2px; background: var(--accent); }
         .philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
         .philosophy-card { background: var(--white); padding: 40px 30px; border-radius: 15px; border: 1px solid var(--gray-light); transition: var(--transition); position: relative; transform: translateY(20px); opacity: 0; }
@@ -280,6 +279,7 @@
             h1, h2, h3, .luxury-main-title { overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; line-height: 1.2; }
         }
 
+        /* Mobile Borders & Fixes */
         @media (max-width: 768px) {
             section { padding: 60px 0; }
             .tight-section { padding: 40px 0; }
@@ -289,6 +289,7 @@
             .services-grid { grid-template-columns: 1fr; }
             .value-hero { padding: 120px 0 60px; }
             .value-stat { min-width: 160px; }
+            .luxury-main-title:before, .luxury-main-title:after { display: none; }
             .form-container { padding: 30px 20px; }
             .pricing-grid, .pricing-content, .stats-grid { grid-template-columns: 1fr; gap: 20px; }
             .value-stats { grid-template-columns: repeat(2, 1fr); }
@@ -299,6 +300,12 @@
             .tool-icon { font-size: 2.8rem; margin-bottom: 15px; }
             .tool-card h3 { font-size: 1.3rem; }
             .tool-card p { font-size: 0.9rem; }
+            
+            /* ADDED BORDERS FOR MOBILE SEPARATION */
+            .pricing-card { border: 1px solid #ddd; }
+            .service-item { border: 1px solid #ddd; }
+            .why-point { border: 1px solid #ddd; }
+            .social-profile { border: 1px solid #ddd; }
         }
 
         @media (max-width: 576px) {
@@ -328,9 +335,11 @@
         <div class="container header-container">
             <a href="#" class="logo">Visual Assets Alchemists</a>
             <div class="header-social">
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://instagram.com/gzv.photolab" target="_blank" class="social-link" title="GZV Photo Lab"><i class="fab fa-instagram"></i></a>
+                <a href="https://instagram.com/NR_Arts_" target="_blank" class="social-link" title="NR Arts"><i class="fab fa-instagram"></i></a>
+                <a href="https://instagram.com/VAA_Studio" target="_blank" class="social-link" title="VAA Studio"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
             <nav id="mainNav">
                 <ul>
                     <li><a href="#value">Value</a></li>
@@ -367,6 +376,7 @@
                 <h2>The Alchemist's Promise</h2>
                 <p>Where technical precision dances with artistic soul.</p>
             </div>
+            
             <div class="why-grid">
                 <div class="why-point">
                     <div class="why-icon"><i class="fas fa-chess-queen"></i></div>
@@ -408,9 +418,9 @@
                 <h2>Digital Alchemy Studio</h2>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Cinematic Video Editing.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop, Lightroom, and Bridge for perfect color grading, exposure balancing, and detail enhancement. Professional retouching and composition.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Professional video editing for cinematic property tours with seamless transitions, color grading, and audio enhancement. 4K video production.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion graphics, visual effects, and animation to create engaging property presentations that stand out. Virtual staging and 3D integration.</p></div>
                 <div class="tool-card"><div class="tool-icon"><i class="fas fa-cube"></i></div><h3>3D & Virtual Staging</h3><p>Transforming empty spaces into beautifully furnished homes using advanced 3D rendering and virtual staging techniques. Professional floor plans.</p></div>
             </div>
         </div>
@@ -451,7 +461,7 @@
     <section class="pricing-section tight-section" id="pricing">
         <div class="container">
             <div class="section-intro">
-                <h2>Investment in Alchemy</h2>
+                <h2>Investment in Visual Alchemy</h2>
                 <p class="artistic-caption" style="color: rgba(255,255,255,0.8);">Transparent tiers for transformative results.</p>
             </div>
             
@@ -588,7 +598,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Visual Assets Alchemists. All rights reserved.</p>
+                <p>&copy; 2026 Visual Assets Alchemists. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -603,7 +613,6 @@
                 x[i].style.display = "none";
             }
             document.getElementById(tabName).style.display = "grid";
-            // Small timeout to allow display:grid to apply before adding opacity class for animation
             setTimeout(() => {
                 document.getElementById(tabName).classList.add("active");
             }, 10);
@@ -612,12 +621,16 @@
             for (i = 0; i < tabs.length; i++) {
                 tabs[i].classList.remove("active");
             }
-            // Find button that triggered this and add active class (simple approximation since 'this' isn't passed)
-            // In a real scenario, pass 'this' or use event listeners. For simplicity here:
             event.target.classList.add("active");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Force Scroll to Top on Load
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+
             // Optimized Scroll Listener
             const header = document.getElementById('header');
             let ticking = false;
