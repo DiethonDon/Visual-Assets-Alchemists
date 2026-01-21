@@ -16,7 +16,7 @@
             --gray-dark: #333333;
             --accent: #D4AF37;
             --accent-dark: #B08C2A;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -32,9 +32,10 @@
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
         section { padding: 80px 0; position: relative; overflow: hidden; will-change: transform; } 
         .tight-section { padding: 60px 0; }
+        .section-intro { text-align: center; max-width: 800px; margin: 0 auto 3rem; }
 
         /* Buttons */
-        .btn { display: inline-flex; align-items: center; padding: 14px 32px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
         .btn:hover { background: var(--black); color: var(--white); transform: translateY(-2px); }
         .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
         .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px) scale(1.05); }
@@ -81,7 +82,6 @@
         .investment-philosophy { background: #f8f8f8; padding: 80px 0; text-align: center; }
         .philosophy-container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         .philosophy-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--black); margin-bottom: 40px; position: relative; display: inline-block; padding-bottom: 15px; }
-        @keyframes slideDownTitle { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
         .philosophy-title:after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 2px; background: var(--accent); }
         .philosophy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
         .philosophy-card { background: var(--white); padding: 40px 30px; border-radius: 15px; border: 1px solid var(--gray-light); transition: var(--transition); position: relative; transform: translateY(20px); opacity: 0; }
@@ -89,10 +89,8 @@
         .philosophy-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--accent); }
         .philosophy-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
 
-        /* Why Choose Me */
+        /* Why Choose Me - Hexagons */
         .why-choose { background: var(--white); padding: 100px 0 60px; }
-        .section-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
-        .section-intro h2 { margin-bottom: 1.5rem; font-size: clamp(2rem, 4vw, 3rem); color: var(--black); }
         .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 50px; }
         
         .why-point {
@@ -106,55 +104,13 @@
         .why-point h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--black); position: relative; z-index: 2; }
         .why-point p { font-size: 1rem; position: relative; z-index: 2; text-align: center; }
 
-        /* --- DIGITAL ALCHEMY STUDIO (RESTORED) --- */
-        .editing-expertise { background: var(--gray-light); padding: 100px 0; position: relative; overflow: hidden; }
-        .tools-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-        .tools-grid { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
-        
-        .tool-card { 
-            background: var(--white); 
-            padding: 50px 40px; 
-            text-align: center; 
-            border: 2px solid transparent; 
-            transition: var(--transition); 
-            opacity: 0; 
-            transform: translateY(30px); 
-            /* THE ORIGINAL CIRCLE STYLING */
-            border-radius: 50%; 
-            width: 380px; 
-            height: 380px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
-            position: relative; 
-            overflow: hidden; 
-        }
-        
-        /* RESTORED ANIMATION */
-        .tool-card.animated { 
-            opacity: 1; 
-            transform: translateY(0); 
-            animation: circleReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
-        }
-        
-        @keyframes circleReveal { 
-            0% { clip-path: circle(0% at 50% 50%); } 
-            100% { clip-path: circle(100% at 50% 50%); } 
-        }
-        
-        .tool-card:hover { 
-            border-color: var(--accent); 
-            transform: translateY(-15px) scale(1.05); 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
-        }
-        
-        .tool-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--accent); height: 70px; display: flex; align-items: center; justify-content: center; }
-        .tool-card h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--black); line-height: 1.3; max-width: 100%; }
-        .tool-card p { font-size: 1rem; color: var(--gray-medium); line-height: 1.6; max-width: 90%; margin: 0 auto; text-overflow: ellipsis; }
-        .tool-card:before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; background: radial-gradient(circle at center, transparent 60%, rgba(212, 175, 55, 0.1) 100%); opacity: 0; transition: var(--transition); }
-        .tool-card:hover:before { opacity: 1; }
+        /* Tools */
+        .editing-expertise { background: var(--gray-light); padding: 100px 0; }
+        .tools-grid { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
+        .tool-card { background: var(--white); padding: 50px 40px; text-align: center; border-radius: 50%; width: 350px; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: var(--transition); }
+        .tool-card.animated { opacity: 1; transform: translateY(0); }
+        .tool-card:hover { transform: translateY(-10px); border: 1px solid var(--accent); }
+        .tool-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--accent); }
 
         /* Gallery */
         .unique-gallery { padding: 80px 0; background: var(--white); }
@@ -229,13 +185,13 @@
         .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; animation: fadeIn 0.5s ease; }
         .pricing-content.active { display: grid; }
         
-        .pricing-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 40px 30px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 20px; 
-            transition: transform 0.3s ease, border-color 0.3s ease; 
-            will-change: transform; 
+        .pricing-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 40px 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 20px; 
+            transition: transform 0.3s ease, border-color 0.3s ease; 
+            will-change: transform; 
         }
         .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); }
         .pricing-card.featured { border-color: var(--accent); transform: scale(1.05); background: rgba(255, 255, 255, 0.08); z-index: 2; }
@@ -259,16 +215,16 @@
         /* Social - LAG FIX */
         .social-media-section { background: var(--gray-light); padding: 80px 0; text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-        .social-profile { 
-            background: var(--white); 
-            padding: 30px; 
-            border-radius: 15px; 
-            border: 1px solid #eee; 
-            min-width: 250px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            opacity: 0; 
-            transform: translateY(20px); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+        .social-profile { 
+            background: var(--white); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid #eee; 
+            min-width: 250px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
             will-change: transform;
         }
         .social-profile.animated { opacity: 1; transform: translateY(0); }
@@ -295,8 +251,7 @@
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .header-social { display: none; }
             .tools-grid { gap: 30px; }
-            /* Resizing tools on smaller screens */
-            .tool-card { width: 320px; height: 320px; padding: 35px 25px; } 
+            .tool-card { width: 350px; height: 350px; padding: 40px 35px; }
             .tool-icon { font-size: 3rem; margin-bottom: 20px; }
         }
 
@@ -317,8 +272,7 @@
             .social-links { flex-direction: column; align-items: center; }
             .social-profile { min-width: 100%; max-width: 300px; }
             .tools-grid { gap: 25px; }
-            /* Further resizing */
-            .tool-card { width: 300px; height: 300px; padding: 30px 20px; } 
+            .tool-card { width: 320px; height: 320px; padding: 40px 30px; }
             .tool-card h3 { font-size: 1.4rem; }
             .tool-card p { font-size: 0.95rem; }
             h1, h2, h3, .luxury-main-title { overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; line-height: 1.2; }
@@ -341,7 +295,7 @@
             .value-quote { padding: 20px; font-size: 1.2rem; margin: 40px auto; line-height: 1.6; }
             .artistic-caption { font-size: 1rem; padding-left: 15px; margin: 15px 0; }
             .tools-grid { gap: 20px; flex-direction: column; align-items: center; }
-            .tool-card { width: 280px; height: 280px; padding: 25px 20px; }
+            .tool-card { width: 300px; height: 300px; padding: 35px 25px; }
             .tool-icon { font-size: 2.8rem; margin-bottom: 15px; }
             .tool-card h3 { font-size: 1.3rem; }
             .tool-card p { font-size: 0.9rem; }
@@ -369,7 +323,7 @@
             .value-stat-number { font-size: 2.5rem; }
             .social-profile, .form-container { padding: 20px 15px; }
             .contact-detail { padding: 12px; }
-            .tool-card { width: 260px; height: 260px; padding: 20px 15px; }
+            .tool-card { width: 280px; height: 280px; padding: 30px 20px; }
             .tool-card h3 { font-size: 1.2rem; }
         }
     </style>
@@ -463,9 +417,9 @@
                 <h2>Digital Alchemy Studio</h2>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop, Lightroom, and Bridge for perfect color grading, exposure balancing, and detail enhancement. Professional retouching and composition.</p></div>
                 <div class="tool-card"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Professional video editing for cinematic property tours with seamless transitions, color grading, and audio enhancement. 4K video production.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion graphics, visual effects, and animation to create engaging property presentations that stand out. Virtual staging and 3D integration.</p></div>
                 <div class="tool-card"><div class="tool-icon"><i class="fas fa-cube"></i></div><h3>3D & Virtual Staging</h3><p>Transforming empty spaces into beautifully furnished homes using advanced 3D rendering and virtual staging techniques. Professional floor plans.</p></div>
             </div>
         </div>
@@ -511,9 +465,9 @@
             </div>
             
             <div class="pricing-tabs">
-                <button class="tab-btn active" onclick="openTab('real-estate')">Real Estate</button>
-                <button class="tab-btn" onclick="openTab('corporate')">Corporate</button>
-                <button class="tab-btn" onclick="openTab('product')">Product</button>
+                <button class="tab-btn active" onclick="openTab('real-estate', event)">Real Estate</button>
+                <button class="tab-btn" onclick="openTab('corporate', event)">Corporate</button>
+                <button class="tab-btn" onclick="openTab('product', event)">Product</button>
             </div>
 
             <div id="real-estate" class="pricing-content active">
@@ -525,13 +479,13 @@
                 </div>
                 <div class="pricing-card featured">
                     <div class="pricing-badge">Most Popular</div>
-                    <h3>PRO Alchemy</h3>
+                    <h3>PRO Alchemy Package</h3>
                     <div class="price">€120</div>
                     <ul class="pricing-features"><li>Photos + Cinematic Video</li><li>Drone Shots</li><li>Social Media Kit</li></ul>
                     <a href="#contact" class="btn btn-accent" style="margin-top:20px;">Select</a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Premium Suite</h3>
+                    <h3>Premium Alchemy Suite</h3>
                     <div class="price">€250</div>
                     <ul class="pricing-features"><li>Full Transformation</li><li>Virtual Staging</li><li>Branding</li></ul>
                     <a href="#contact" class="btn" style="color: white; border-color: white; margin-top:20px;">Begin</a>
@@ -600,7 +554,7 @@
                         <input type="text" class="form-input" placeholder="Your Name">
                         <input type="email" class="form-input" placeholder="Email">
                         <textarea class="form-textarea" placeholder="Project Details"></textarea>
-                        <button class="btn btn-accent" style="width: 100%;">Send Request</button>
+                        <button class="btn btn-accent" style="width: 100%;">Send Request via Email App</button>
                     </form>
                     <div class="roi-form">
                         <h4 style="margin-bottom: 20px; color: var(--accent);">Alchemy ROI Calculator</h4>
@@ -650,7 +604,7 @@
 
     <script>
         // Tab Function
-        function openTab(tabName) {
+        function openTab(tabName, event) {
             var i;
             var x = document.getElementsByClassName("pricing-content");
             for (i = 0; i < x.length; i++) {
@@ -719,12 +673,8 @@
                 }
                 
                 roiText.innerHTML = `With ${qualityText}, your €${propertyValue.toLocaleString()} property could potentially increase in perceived value by approximately <strong>€${potentialIncrease.toLocaleString()}</strong>.`;
-                
                 investmentReturn.innerHTML = `🎯 That's a potential <strong style="color: var(--accent);">${((qualityMultiplier - 1) * 100).toFixed(0)}% increase</strong> in perceived property value!`;
-                
                 roiResult.classList.add('show');
-                
-                // Add animation to result
                 roiResult.style.animation = 'fadeIn 0.5s ease';
             });
 
@@ -749,10 +699,23 @@
                 e.preventDefault();
                 const name = this.querySelector('input[type="text"]').value;
                 const email = this.querySelector('input[type="email"]').value;
+                const phone = this.querySelector('input[type="tel"]').value;
+                
+                const packageSelect = this.querySelector('select');
+                const selectedPackage = packageSelect ? packageSelect.options[packageSelect.selectedIndex].text : "General Inquiry";
+                
+                const propertySelects = this.querySelectorAll('select');
+                let propertyType = "Not specified";
+                if (propertySelects.length > 1) {
+                     propertyType = propertySelects[1].options[propertySelects[1].selectedIndex].text;
+                }
+
+                const services = Array.from(this.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.innerText).join(', ');
+                
                 const details = this.querySelector('textarea').value;
                 
-                const subject = `Inquiry from ${name}`;
-                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ADetails:%0D%0A${details}`;
+                const subject = `Inquiry from ${name} - ${selectedPackage}`;
+                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0A%0D%0APackage: ${selectedPackage}%0D%0AProperty Type: ${propertyType}%0D%0AAdditional Services: ${services}%0D%0A%0D%0ADetails:%0D%0A${details}`;
                 
                 window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
             });
