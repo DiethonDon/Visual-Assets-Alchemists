@@ -16,7 +16,7 @@
             --gray-dark: #333333;
             --accent: #D4AF37;
             --accent-dark: #B08C2A;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -106,13 +106,55 @@
         .why-point h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--black); position: relative; z-index: 2; }
         .why-point p { font-size: 1rem; position: relative; z-index: 2; text-align: center; }
 
-        /* Tools */
-        .editing-expertise { background: var(--gray-light); padding: 100px 0; }
-        .tools-grid { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
-        .tool-card { background: var(--white); padding: 50px 40px; text-align: center; border-radius: 50%; width: 350px; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); opacity: 0; transform: translateY(20px); transition: var(--transition); }
-        .tool-card.animated { opacity: 1; transform: translateY(0); }
-        .tool-card:hover { transform: translateY(-10px); border: 1px solid var(--accent); }
-        .tool-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--accent); }
+        /* --- DIGITAL ALCHEMY STUDIO (RESTORED) --- */
+        .editing-expertise { background: var(--gray-light); padding: 100px 0; position: relative; overflow: hidden; }
+        .tools-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .tools-grid { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
+        
+        .tool-card { 
+            background: var(--white); 
+            padding: 50px 40px; 
+            text-align: center; 
+            border: 2px solid transparent; 
+            transition: var(--transition); 
+            opacity: 0; 
+            transform: translateY(30px); 
+            /* THE ORIGINAL CIRCLE STYLING */
+            border-radius: 50%; 
+            width: 380px; 
+            height: 380px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        /* RESTORED ANIMATION */
+        .tool-card.animated { 
+            opacity: 1; 
+            transform: translateY(0); 
+            animation: circleReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
+        }
+        
+        @keyframes circleReveal { 
+            0% { clip-path: circle(0% at 50% 50%); } 
+            100% { clip-path: circle(100% at 50% 50%); } 
+        }
+        
+        .tool-card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-15px) scale(1.05); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+        }
+        
+        .tool-icon { font-size: 3.5rem; margin-bottom: 25px; color: var(--accent); height: 70px; display: flex; align-items: center; justify-content: center; }
+        .tool-card h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--black); line-height: 1.3; max-width: 100%; }
+        .tool-card p { font-size: 1rem; color: var(--gray-medium); line-height: 1.6; max-width: 90%; margin: 0 auto; text-overflow: ellipsis; }
+        .tool-card:before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; background: radial-gradient(circle at center, transparent 60%, rgba(212, 175, 55, 0.1) 100%); opacity: 0; transition: var(--transition); }
+        .tool-card:hover:before { opacity: 1; }
 
         /* Gallery */
         .unique-gallery { padding: 80px 0; background: var(--white); }
@@ -187,13 +229,13 @@
         .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; animation: fadeIn 0.5s ease; }
         .pricing-content.active { display: grid; }
         
-        .pricing-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 40px 30px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 20px; 
-            transition: transform 0.3s ease, border-color 0.3s ease; 
-            will-change: transform; 
+        .pricing-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 40px 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 20px; 
+            transition: transform 0.3s ease, border-color 0.3s ease; 
+            will-change: transform; 
         }
         .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); }
         .pricing-card.featured { border-color: var(--accent); transform: scale(1.05); background: rgba(255, 255, 255, 0.08); z-index: 2; }
@@ -214,19 +256,19 @@
         .roi-result { background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid rgba(212, 175, 55, 0.3); display: none; animation: fadeIn 0.5s ease; }
         .roi-result.show { display: block; }
         
-        /* Social */
+        /* Social - LAG FIX */
         .social-media-section { background: var(--gray-light); padding: 80px 0; text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-        .social-profile { 
-            background: var(--white); 
-            padding: 30px; 
-            border-radius: 15px; 
-            border: 1px solid #eee; 
-            min-width: 250px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            opacity: 0; 
-            transform: translateY(20px); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+        .social-profile { 
+            background: var(--white); 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid #eee; 
+            min-width: 250px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
             will-change: transform;
         }
         .social-profile.animated { opacity: 1; transform: translateY(0); }
@@ -253,7 +295,8 @@
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .header-social { display: none; }
             .tools-grid { gap: 30px; }
-            .tool-card { width: 350px; height: 350px; padding: 40px 35px; }
+            /* Resizing tools on smaller screens */
+            .tool-card { width: 320px; height: 320px; padding: 35px 25px; } 
             .tool-icon { font-size: 3rem; margin-bottom: 20px; }
         }
 
@@ -274,7 +317,8 @@
             .social-links { flex-direction: column; align-items: center; }
             .social-profile { min-width: 100%; max-width: 300px; }
             .tools-grid { gap: 25px; }
-            .tool-card { width: 320px; height: 320px; padding: 40px 30px; }
+            /* Further resizing */
+            .tool-card { width: 300px; height: 300px; padding: 30px 20px; } 
             .tool-card h3 { font-size: 1.4rem; }
             .tool-card p { font-size: 0.95rem; }
             h1, h2, h3, .luxury-main-title { overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; line-height: 1.2; }
@@ -297,7 +341,7 @@
             .value-quote { padding: 20px; font-size: 1.2rem; margin: 40px auto; line-height: 1.6; }
             .artistic-caption { font-size: 1rem; padding-left: 15px; margin: 15px 0; }
             .tools-grid { gap: 20px; flex-direction: column; align-items: center; }
-            .tool-card { width: 300px; height: 300px; padding: 35px 25px; }
+            .tool-card { width: 280px; height: 280px; padding: 25px 20px; }
             .tool-icon { font-size: 2.8rem; margin-bottom: 15px; }
             .tool-card h3 { font-size: 1.3rem; }
             .tool-card p { font-size: 0.9rem; }
@@ -325,7 +369,7 @@
             .value-stat-number { font-size: 2.5rem; }
             .social-profile, .form-container { padding: 20px 15px; }
             .contact-detail { padding: 12px; }
-            .tool-card { width: 280px; height: 280px; padding: 30px 20px; }
+            .tool-card { width: 260px; height: 260px; padding: 20px 15px; }
             .tool-card h3 { font-size: 1.2rem; }
         }
     </style>
@@ -419,9 +463,9 @@
                 <h2>Digital Alchemy Studio</h2>
             </div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop, Lightroom, and Bridge for perfect color grading, exposure balancing, and detail enhancement. Professional retouching and composition.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
                 <div class="tool-card"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Professional video editing for cinematic property tours with seamless transitions, color grading, and audio enhancement. 4K video production.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion graphics, visual effects, and animation to create engaging property presentations that stand out. Virtual staging and 3D integration.</p></div>
+                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
                 <div class="tool-card"><div class="tool-icon"><i class="fas fa-cube"></i></div><h3>3D & Virtual Staging</h3><p>Transforming empty spaces into beautifully furnished homes using advanced 3D rendering and virtual staging techniques. Professional floor plans.</p></div>
             </div>
         </div>
@@ -467,29 +511,29 @@
             </div>
             
             <div class="pricing-tabs">
-                <button class="tab-btn active" onclick="openTab('real-estate', event)">Real Estate</button>
-                <button class="tab-btn" onclick="openTab('corporate', event)">Corporate</button>
-                <button class="tab-btn" onclick="openTab('product', event)">Product</button>
+                <button class="tab-btn active" onclick="openTab('real-estate')">Real Estate</button>
+                <button class="tab-btn" onclick="openTab('corporate')">Corporate</button>
+                <button class="tab-btn" onclick="openTab('product')">Product</button>
             </div>
 
             <div id="real-estate" class="pricing-content active">
                 <div class="pricing-card">
                     <h3>Visual Foundation</h3>
-                    <div class="price">€85</div>
+                    <div class="price">€70</div>
                     <ul class="pricing-features"><li>Professional Photos</li><li>Editing</li><li>48h Delivery</li></ul>
                     <a href="#contact" class="btn" style="color: white; border-color: white; margin-top:20px;">Begin</a>
                 </div>
                 <div class="pricing-card featured">
                     <div class="pricing-badge">Most Popular</div>
-                    <h3>Cinematic Narrative</h3>
-                    <div class="price">€150</div>
-                    <ul class="pricing-features"><li>Professional Photos</li><li>Cinematic Video</li><li>Social Media Kit</li></ul>
+                    <h3>PRO Alchemy</h3>
+                    <div class="price">€120</div>
+                    <ul class="pricing-features"><li>Photos + Cinematic Video</li><li>Drone Shots</li><li>Social Media Kit</li></ul>
                     <a href="#contact" class="btn btn-accent" style="margin-top:20px;">Select</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Premium Suite</h3>
                     <div class="price">€250</div>
-                    <ul class="pricing-features"><li>Full Transformation</li><li>Drone Photos + Video</li><li>3D Floor Plan</li></ul>
+                    <ul class="pricing-features"><li>Full Transformation</li><li>Virtual Staging</li><li>Branding</li></ul>
                     <a href="#contact" class="btn" style="color: white; border-color: white; margin-top:20px;">Begin</a>
                 </div>
             </div>
@@ -545,165 +589,25 @@
     <section id="contact" class="contact-section tight-section">
         <div class="container">
             <h2>Begin Your Journey</h2>
-            
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Ready to Transmute Your Properties?</h3>
-                    <p>Let's discuss how visual alchemy can elevate your listings and accelerate your sales through emotional resonance.</p>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Business Email</span>
-                        <a href="mailto:home@visualchemy.gr">home@visualchemy.gr</a>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Personal Email</span>
-                        <a href="mailto:nakosrousis@outlook.com">nakosrousis@outlook.com</a>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Phone</span>
-                        <a href="tel:+6986729570">+6986729570</a> / <a href="tel:+2104252713">2104252713</a>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Based in</span>
-                        <p>Athens, Greece</p>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Editing Tools</span>
-                        <p>Adobe Creative Suite Expert: Photoshop, Lightroom, Premiere Pro, After Effects</p>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <span class="contact-label">Follow Us</span>
-                        <div class="footer-social">
-                            <a href="https://instagram.com/gzv.photolab" target="_blank" title="GZV Photo Lab">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://instagram.com/NR_Arts_" target="_blank" title="NR Arts">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://instagram.com/VAA_Studio" target="_blank" title="VAA Studio">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <h3>Ready to Transmute?</h3>
+                    <p>Let's discuss how visual alchemy can elevate your listings.</p>
+                    <div class="contact-detail"><strong>Email:</strong> home@visualchemy.gr</div>
                 </div>
-                
                 <div class="form-container">
-                    <h3 style="margin-bottom: 30px;">Request a Quote</h3>
                     <form id="contactForm">
-                        <div class="form-group">
-                            <label class="form-label">Your Name</label>
-                            <input type="text" class="form-input" placeholder="Enter your full name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-input" placeholder="Enter your email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-input" placeholder="Enter your phone number">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Select Package</label>
-                            <select class="form-select">
-                                <option value="">Choose a package</option>
-                                <option value="foundation">Visual Foundation (€70)</option>
-                                <option value="pro">PRO Alchemy Package (€120)</option>
-                                <option value="premium">Premium Alchemy Suite (€250)</option>
-                                <option value="custom">Custom Enterprise Solution</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Property Type</label>
-                            <select class="form-select">
-                                <option value="">Select property type</option>
-                                <option value="residential">Residential Home</option>
-                                <option value="apartment">Apartment</option>
-                                <option value="villa">Villa</option>
-                                <option value="commercial">Commercial Property</option>
-                                <option value="development">Development Project</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Property Location</label>
-                            <input type="text" class="form-input" placeholder="Enter property address or area">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Additional Services</label>
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                                <label class="form-checkbox">
-                                    <input type="checkbox" name="services[]" value="express">
-                                    <span>Priority 24-Hour Delivery</span>
-                                </label>
-                                <label class="form-checkbox">
-                                    <input type="checkbox" name="services[]" value="virtual-staging">
-                                    <span>Virtual Staging</span>
-                                </label>
-                                <label class="form-checkbox">
-                                    <input type="checkbox" name="services[]" value="floor-plans">
-                                    <span>Floor Plans</span>
-                                </label>
-                                <label class="form-checkbox">
-                                    <input type="checkbox" name="services[]" value="twilight">
-                                    <span>Twilight Photography</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Project Details</label>
-                            <textarea class="form-textarea" placeholder="Tell us about your property, timeline, and specific requirements..." rows="4"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-checkbox">
-                                <input type="checkbox" required>
-                                <span>I agree to receive updates and promotional materials</span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-accent" style="width: 100%; padding: 16px; font-size: 1rem;">
-                            <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>
-                            Send Request via Email App
-                        </button>
+                        <input type="text" class="form-input" placeholder="Your Name">
+                        <input type="email" class="form-input" placeholder="Email">
+                        <textarea class="form-textarea" placeholder="Project Details"></textarea>
+                        <button class="btn btn-accent" style="width: 100%;">Send Request</button>
                     </form>
-                    
                     <div class="roi-form">
                         <h4 style="margin-bottom: 20px; color: var(--accent);">Alchemy ROI Calculator</h4>
-                        <div class="form-group">
-                            <label class="form-label">Property Value (€)</label>
-                            <input type="number" class="form-input" id="propertyValue" placeholder="e.g., 500000" min="0">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">Current Photos Quality</label>
-                            <select class="form-select" id="photoQuality">
-                                <option value="1">Amateur/Phone Photos</option>
-                                <option value="1.15">Basic Professional</option>
-                                <option value="1.32">Premium Professional (Our Standard)</option>
-                            </select>
-                        </div>
-                        
-                        <button type="button" id="calculateROI" class="btn" style="width: 100%; background: var(--accent); color: var(--black); border: none;">
-                            Calculate Alchemical Return
-                        </button>
-                        
-                        <div class="roi-result" id="roiResult">
-                            <h4 style="color: var(--accent); margin-bottom: 10px;">Alchemy ROI Analysis</h4>
-                            <p id="roiText"></p>
-                            <p id="investmentReturn" style="margin-top: 10px; font-weight: 600;"></p>
-                        </div>
+                        <div class="form-group"><label class="form-label">Property Value (€)</label><input type="number" class="form-input" id="propertyValue" placeholder="e.g., 500000" min="0"></div>
+                        <div class="form-group"><label class="form-label">Current Photos Quality</label><select class="form-select" id="photoQuality"><option value="1">Amateur/Phone Photos</option><option value="1.15">Basic Professional</option><option value="1.32">Premium Professional (Our Standard)</option></select></div>
+                        <button type="button" id="calculateROI" class="btn" style="width: 100%; background: var(--accent); color: var(--black); border: none;">Calculate</button>
+                        <div class="roi-result" id="roiResult"><h4 style="color: var(--accent); margin-bottom: 10px;">Alchemy ROI Analysis</h4><p id="roiText"></p><p id="investmentReturn" style="margin-top: 10px; font-weight: 600;"></p></div>
                     </div>
                 </div>
             </div>
@@ -714,42 +618,11 @@
         <div class="container">
             <div class="section-intro">
                 <h2>Our Social Media Presence</h2>
-                <p class="artistic-caption">Follow our journey and explore our visual storytelling across different creative platforms</p>
             </div>
-            
             <div class="social-links">
-                <div class="social-profile">
-                    <div class="social-profile-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>GZV Photo Lab</h3>
-                    <div class="social-handle">@gzv.photolab</div>
-                    <p>Professional real estate photography portfolio showcasing our finest architectural work.</p>
-                    <div class="social-followers">Architectural Photography • Real Estate • Greece</div>
-                    <a href="https://instagram.com/gzv.photolab" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
-                </div>
-                
-                <div class="social-profile">
-                    <div class="social-profile-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>NR Arts</h3>
-                    <div class="social-handle">@NR_Arts_</div>
-                    <p>Personal artistic portfolio featuring fine art, portraits, and creative visual explorations.</p>
-                    <div class="social-followers">Fine Art • Portraits • Creative • Greece</div>
-                    <a href="https://instagram.com/NR_Arts_" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
-                </div>
-                
-                <div class="social-profile">
-                    <div class="social-profile-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>VAA Studio</h3>
-                    <div class="social-handle">@VAA_Studio</div>
-                    <p>Behind-the-scenes, client work, and the business side of visual asset creation.</p>
-                    <div class="social-followers">Studio • Behind the Scenes • Client Work • Business</div>
-                    <a href="https://instagram.com/VAA_Studio" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a>
-                </div>
+                <div class="social-profile"><div class="social-profile-icon"><i class="fab fa-instagram"></i></div><h3>GZV Photo Lab</h3><div class="social-handle">@gzv.photolab</div><a href="https://instagram.com/gzv.photolab" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a></div>
+                <div class="social-profile"><div class="social-profile-icon"><i class="fab fa-instagram"></i></div><h3>NR Arts</h3><div class="social-handle">@NR_Arts_</div><a href="https://instagram.com/NR_Arts_" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a></div>
+                <div class="social-profile"><div class="social-profile-icon"><i class="fab fa-instagram"></i></div><h3>VAA Studio</h3><div class="social-handle">@VAA_Studio</div><a href="https://instagram.com/VAA_Studio" target="_blank" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.8rem;">Follow</a></div>
             </div>
         </div>
     </section>
@@ -758,69 +631,26 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <div class="footer-signature">Visual Assets Alchemists</div>
-                    <p>Real Estate Media Specialists transforming architectural spaces into compelling visual narratives through photography, cinematic storytelling, and social media management.</p>
+                    <h3>Visual Assets Alchemists</h3>
+                    <p>Real Estate Media Specialists.</p>
                 </div>
-                
                 <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul style="list-style: none;">
-                        <li><a href="#value" style="color: rgba(255,255,255,0.6); text-decoration: none;">The Value</a></li>
-                        <li><a href="#philosophy" style="color: rgba(255,255,255,0.6); text-decoration: none;">Our Philosophy</a></li>
-                        <li><a href="#why" style="color: rgba(255,255,255,0.6); text-decoration: none;">Why Choose Us</a></li>
-                        <li><a href="#services" style="color: rgba(255,255,255,0.6); text-decoration: none;">Services</a></li>
-                        <li><a href="#gallery" style="color: rgba(255,255,255,0.6); text-decoration: none;">Gallery</a></li>
-                        <li><a href="#pricing" style="color: rgba(255,255,255,0.6); text-decoration: none;">Investment</a></li>
-                        <li><a href="#social" style="color: rgba(255,255,255,0.6); text-decoration: none;">Social Media</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul style="list-style: none;">
-                        <li>Residential Photography</li>
-                        <li>Commercial Photography</li>
-                        <li>Cinematic Video Tours</li>
-                        <li>Social Media Management</li>
-                        <li>Professional Editing</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact & Social</h3>
-                    <p style="color: rgba(255, 255, 255, 0.6);">Athens, Greece</p>
-                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Phone: +6986729570<br>2104252713</p>
-                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Email: home@visualchemy.gr</p>
-                    <p style="color: rgba(255, 255, 255, 0.6); margin-top: 10px;">Personal: nakosrousis@outlook.com</p>
-                    
+                    <h3>Social</h3>
                     <div class="footer-social">
-                        <a href="https://instagram.com/gzv.photolab" target="_blank" title="GZV Photo Lab">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://instagram.com/NR_Arts_" target="_blank" title="NR Arts">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://instagram.com/VAA_Studio" target="_blank" title="VAA Studio">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>© 2023 Visual Assets Alchemists | Real Estate Media Specialists. All rights reserved. | Adobe Creative Suite Expert: Photoshop, Lightroom, Premiere Pro, After Effects</p>
-                <p style="margin-top: 10px;">Follow us on Instagram: 
-                    <a href="https://instagram.com/gzv.photolab" target="_blank" style="color: var(--accent); text-decoration: none;">@gzv.photolab</a> • 
-                    <a href="https://instagram.com/NR_Arts_" target="_blank" style="color: var(--accent); text-decoration: none;">@NR_Arts_</a> • 
-                    <a href="https://instagram.com/VAA_Studio" target="_blank" style="color: var(--accent); text-decoration: none;">@VAA_Studio</a>
-                </p>
+                <p>&copy; 2026 Visual Assets Alchemists. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
         // Tab Function
-        function openTab(tabName, event) {
+        function openTab(tabName) {
             var i;
             var x = document.getElementsByClassName("pricing-content");
             for (i = 0; i < x.length; i++) {
@@ -841,92 +671,32 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             // Force Scroll to Top
-            if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-            }
+            if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
             window.scrollTo(0, 0);
 
-            // Header Scroll Effect
+            // Optimized Scroll Listener
             const header = document.getElementById('header');
+            let ticking = false;
+
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('header-scrolled');
-                } else {
-                    header.classList.remove('header-scrolled');
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        window.scrollY > 50 ? header.classList.add('header-scrolled') : header.classList.remove('header-scrolled');
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             });
 
-            // Mobile Menu Toggle
-            const mobileToggle = document.querySelector('.mobile-toggle');
-            const nav = document.getElementById('desktop-nav');
-            
+            // Mobile Nav
+            const mobileToggle = document.getElementById('mobileToggle');
+            const mainNav = document.getElementById('mainNav');
             mobileToggle.addEventListener('click', () => {
-                if(nav.style.display === 'block') {
-                    nav.style.display = 'none';
-                } else {
-                    nav.style.display = 'block';
-                    nav.style.position = 'absolute';
-                    nav.style.top = '100%';
-                    nav.style.left = '0';
-                    nav.style.width = '100%';
-                    nav.style.background = 'white';
-                    nav.style.padding = '20px';
-                    nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                    
-                    const ul = nav.querySelector('ul');
-                    ul.style.flexDirection = 'column';
-                    ul.style.gap = '15px';
-                    ul.style.alignItems = 'center';
-                }
+                mainNav.classList.toggle('active');
+                mobileToggle.classList.toggle('fa-times');
             });
 
-            // Intersection Observer for Animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            const animatableElements = document.querySelectorAll('.why-point, .gallery-item, .pricing-card, .value-stat');
-            animatableElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-                observer.observe(el);
-            });
-
-            // Email Button Logic
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = this.querySelector('input[type="text"]').value;
-                const email = this.querySelector('input[type="email"]').value;
-                const phone = this.querySelector('input[type="tel"]').value;
-                
-                const packageSelect = this.querySelector('select');
-                const selectedPackage = packageSelect ? packageSelect.options[packageSelect.selectedIndex].text : "General Inquiry";
-                
-                const propertySelects = this.querySelectorAll('select');
-                let propertyType = "Not specified";
-                if (propertySelects.length > 1) {
-                     propertyType = propertySelects[1].options[propertySelects[1].selectedIndex].text;
-                }
-
-                const services = Array.from(this.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.innerText).join(', ');
-                
-                const details = this.querySelector('textarea').value;
-                
-                const subject = `Inquiry from ${name} - ${selectedPackage}`;
-                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0A%0D%0APackage: ${selectedPackage}%0D%0AProperty Type: ${propertyType}%0D%0AAdditional Services: ${services}%0D%0A%0D%0ADetails:%0D%0A${details}`;
-                
-                window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
-            });
-            
-             // ROI Calculator
+            // ROI Calculator
             document.getElementById('calculateROI').addEventListener('click', function() {
                 const propertyValue = parseFloat(document.getElementById('propertyValue').value);
                 const qualityMultiplier = parseFloat(document.getElementById('photoQuality').value);
@@ -956,6 +726,35 @@
                 
                 // Add animation to result
                 roiResult.style.animation = 'fadeIn 0.5s ease';
+            });
+
+            // Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const animatableElements = document.querySelectorAll(
+                '.why-point, .tool-card, .pricing-card, .social-profile, .stat-item, .service-item, .gallery-item, .philosophy-card'
+            );
+            
+            animatableElements.forEach(el => observer.observe(el));
+            
+            // Email Button Logic
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = this.querySelector('input[type="text"]').value;
+                const email = this.querySelector('input[type="email"]').value;
+                const details = this.querySelector('textarea').value;
+                
+                const subject = `Inquiry from ${name}`;
+                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ADetails:%0D%0A${details}`;
+                
+                window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
             });
         });
     </script>
