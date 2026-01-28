@@ -72,32 +72,32 @@ nav a:hover { color: var(--accent); }
 .why-point {
     padding: 90px 40px; 
     background: var(--white);
+    /* Static shadow instead of border for smoothness */
     box-shadow: 0 0 0 1px #eee; 
     position: relative;
     overflow: hidden;
     transition: var(--transition);
-    opacity: 0; transform: translateY(30px); 
-    /* THE HEXAGON SHAPE */
+    opacity: 0; transform: translateY(30px); /* Animation start state */
+    
+    /* The Hexagon Shape */
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     min-height: 500px; text-align: center;
 }
 .why-point.visible { opacity: 1; transform: translateY(0); }
 .why-point:hover { transform: scale(1.03); z-index: 2; background: #fafafa; }
-.why-point:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05)); opacity: 0; transition: var(--transition); }
-.why-point:hover:before { opacity: 1; }
 
-.why-icon { font-size: 3.5rem; margin-bottom: 30px; color: var(--accent); transition: transform 0.6s var(--ease); }
-.why-point:hover .why-icon { transform: scale(1.1) rotate(5deg); }
+.why-icon { font-size: 3.5rem; margin-bottom: 30px; color: var(--accent); }
 .why-point h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--black); }
 
-/* --- DIGITAL ALCHEMY STUDIO (BIG CIRCLES) --- */
+/* --- TOOLS (BIG CIRCLES) --- */
 .editing-expertise { background: var(--gray-light); }
 .tools-grid { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
 
 .tool-card { 
     background: var(--white); 
-    width: 380px; height: 380px; 
+    width: 380px; height: 380px; /* Big Circles */
     border-radius: 50%; 
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 40px; text-align: center; 
@@ -128,17 +128,15 @@ nav a:hover { color: var(--accent); }
 
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); display: block; }
 .gallery-item:hover img { transform: scale(1.05); }
+
 .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 2; }
 
 .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
 .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
-.gallery-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 5px; display: block; }
 .gallery-item h3 { color: white; margin: 0; font-size: 1.5rem; }
 
-/* --- PRICING (TABBED & PREMIUM) --- */
+/* --- PRICING (TABS) --- */
 .pricing-section { background: #111; color: var(--white); text-align: center; }
-.pricing-section .section-intro p { color: rgba(255, 255, 255, 0.8); }
-
 .pricing-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
 .tab-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: 12px 35px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: 0.3s; }
 .tab-btn:hover { border-color: white; color: white; }
@@ -146,14 +144,16 @@ nav a:hover { color: var(--accent); }
 
 .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; animation: fadeUp 0.6s ease; }
 .pricing-content.active { display: grid; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .pricing-card { background: rgba(255,255,255,0.05); padding: 50px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); display: flex; flex-direction: column; text-align: left; }
 .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(255,255,255,0.08); }
 .pricing-card.featured { border-color: var(--accent); background: rgba(212,175,55,0.08); transform: scale(1.05); z-index: 2; }
 .pricing-card.featured:hover { transform: translateY(-10px) scale(1.05); }
 
-.pricing-card h3 { color: var(--white); font-size: 1.5rem; text-align: center; }
-.price { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin: 20px 0; text-align: center; }
+.price { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin: 25px 0; line-height: 1; }
+.price span { font-size: 1rem; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; display: block; margin-top: 10px; letter-spacing: 1px; text-transform: uppercase; }
+
 .pricing-features { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
 .pricing-features li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ccc; }
 .pricing-features li i { color: var(--accent); margin-right: 10px; width: 20px; }
@@ -172,14 +172,6 @@ input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; borde
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
 textarea { height: 150px; resize: none; }
 
-/* --- SOCIAL --- */
-.social-media-section { background: var(--gray-light); text-align: center; }
-.social-links { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-.social-profile { background: white; padding: 40px; border-radius: 15px; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); opacity: 0; transform: translateY(30px); }
-.social-profile.visible { opacity: 1; transform: translateY(0); }
-.social-profile:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 3px solid var(--accent); }
-.social-profile-icon { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
-
 /* --- FOOTER --- */
 footer { background: var(--black); color: #888; padding: 80px 0 40px; font-size: 0.9rem; border-top: 1px solid #222; }
 .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 60px; }
@@ -188,7 +180,10 @@ footer { background: var(--black); color: #888; padding: 80px 0 40px; font-size:
 .footer-col li { margin-bottom: 12px; }
 .footer-col a { color: #888; text-decoration: none; transition: 0.3s; }
 .footer-col a:hover { color: var(--accent); }
-.footer-social a { margin-right: 15px; font-size: 1.2rem; }
+
+/* Animation */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s var(--ease); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
@@ -200,7 +195,7 @@ footer { background: var(--black); color: #888; padding: 80px 0 40px; font-size:
     .header-social, #desktop-nav { display: none; }
     .mobile-toggle { display: block; }
     .why-grid, .pricing-content, .gallery-masonry, .footer-content, .contact-grid, .tools-grid { grid-template-columns: 1fr; }
-    .gallery-item { height: 250px; grid-column: span 1 !important; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 1; }
     
     /* Mobile Specifics */
     .why-point { clip-path: none; border-radius: 15px; border: 1px solid #ddd; padding: 40px; min-height: auto; }
@@ -213,150 +208,3 @@ footer { background: var(--black); color: #888; padding: 80px 0 40px; font-size:
     #mobile-menu ul { flex-direction: column; align-items: center; gap: 20px; padding: 0; }
     #mobile-menu.active { display: block; }
 }
-    </style>
-</head>
-<body>
-
-    ```
-
-### 3. The Functionality (`script.js`)
-Copy this into a file named `script.js`.
-
-```javascript
-// Translations Object
-const translations = {
-    en: {
-        "nav-value": "The Value", "nav-why": "Why Us", "nav-gallery": "Gallery", "nav-corporate": "Corporate", "nav-pricing": "Investment", "nav-contact": "Contact",
-        "hero-tag": "VISUAL ALCHEMY FOR ARCHITECTURAL SOULS", "hero-sub": "Where Light Writes Poetry on Stone", "hero-h1": "We Don't Photograph Properties.<br>We Awaken Narratives.",
-        "stat-1": "More Views", "stat-2": "Faster Sales", "stat-3": "Retention", "stat-4": "Turnaround",
-        "btn-witness": "Witness the Alchemy", "btn-begin": "Begin Your Visual Sonnet",
-        "why-title": "The Alchemist's Promise", "why-sub": "Where technical precision dances with artistic soul.",
-        "why-1-title": "Strategic Narratives", "why-1-desc": "Each image is a carefully composed chapter in your property's unique story.",
-        "why-2-title": "Agent Success", "why-2-desc": "A complete marketing ecosystem: MLS-ready assets and social media narratives.",
-        "why-3-title": "Artistic Mastery", "why-3-desc": "Unique visual vocabulary from automotive and portrait photography backgrounds.",
-        "why-4-title": "Unlimited Art", "why-4-desc": "I create, not count. Unlimited shots until we capture the magic.",
-        "why-5-title": "48-Hour Speed", "why-5-desc": "When opportunity whispers, we ensure you are shouting with visuals instantly.",
-        "why-6-title": "True Partnership", "why-6-desc": "We become an extension of your team, understanding your specific brand voice.",
-        "gallery-re-title": "Real Estate Gallery", "gallery-re-sub": "Curated residential and commercial spaces.",
-        "gallery-corp-title": "Corporate Gallery", "gallery-corp-sub": "Professional headshots and brand narratives.",
-        "pricing-title": "Investment in Excellence", 
-        "tab-re": "Real Estate", "tab-corp": "Corporate", "tab-prod": "Product",
-        "btn-select": "Select", "contact-title": "Start Your Project", "contact-sub": "Ready to Transmute?", "contact-phone": "Phone", "btn-send": "Send Request via Email App",
-        "footer-desc": "Transforming spaces into stories through light and lens."
-    },
-    gr: {
-        "nav-value": "Η Αξία", "nav-why": "Γιατί Εμάς", "nav-gallery": "Γκαλερί", "nav-corporate": "Εταιρικά", "nav-pricing": "Επένδυση", "nav-contact": "Επικοινωνία",
-        "hero-tag": "ΟΠΤΙΚΗ ΑΛΧΗΜΕΙΑ ΓΙΑ ΑΡΧΙΤΕΚΤΟΝΙΚΕΣ ΨΥΧΕΣ", "hero-sub": "Όπου το Φως Γράφει Ποίηση στην Πέτρα", "hero-h1": "Δεν Φωτογραφίζουμε Ακίνητα.<br>Ξυπνάμε τις Σιωπηλές Ιστορίες τους.",
-        "stat-1": "Προβολές", "stat-2": "Πωλήσεις", "stat-3": "Διατήρηση", "stat-4": "Παράδοση",
-        "btn-witness": "Δείτε την Αλχημεία", "btn-begin": "Ξεκινήστε",
-        "why-title": "Η Υπόσχεση του Αλχημιστή", "why-sub": "Όπου η τεχνική ακρίβεια συναντά την καλλιτεχνική ψυχή.",
-        "why-1-title": "Στρατηγική Αφήγηση", "why-1-desc": "Κάθε εικόνα είναι ένα προσεκτικά συνθεμένο κεφάλαιο στην ιστορία του ακινήτου σας.",
-        "why-2-title": "Επιτυχία Πράκτορα", "why-2-desc": "Ένα πλήρες οικοσύστημα μάρκετινγκ: αρχεία έτοιμα για MLS και social media.",
-        "why-3-title": "Καλλιτεχνική Μαεστρία", "why-3-desc": "Μοναδικό οπτικό λεξιλόγιο από υπόβαθρο αυτοκινήτων και πορτρέτων.",
-        "why-4-title": "Απεριόριστη Τέχνη", "why-4-desc": "Δημιουργώ, δεν μετράω. Απεριόριστες λήψεις μέχρι να αιχμαλωτίσουμε τη μαγεία.",
-        "why-5-title": "Ταχύτητα 48 Ωρών", "why-5-desc": "Όταν η ευκαιρία ψιθυρίζει, διασφαλίζουμε ότι φωνάζετε οπτικά αμέσως.",
-        "why-6-title": "Αληθινή Συνεργασία", "why-6-desc": "Γινόμαστε επέκταση της ομάδας σας, κατανοώντας τη φωνή του brand σας.",
-        "gallery-re-title": "Γκαλερί Ακινήτων", "gallery-re-sub": "Επιλεγμένοι οικιστικοί και επαγγελματικοί χώροι.",
-        "gallery-corp-title": "Εταιρική Γκαλερί", "gallery-corp-sub": "Επαγγελματικά πορτρέτα και αφηγήσεις brand.",
-        "pricing-title": "Επένδυση στην Αριστεία", 
-        "tab-re": "Ακίνητα", "tab-corp": "Εταιρικά", "tab-prod": "Προϊόντα",
-        "btn-select": "Επιλογή", "contact-title": "Ξεκινήστε το Έργο σας", "contact-sub": "Έτοιμοι για Μεταμόρφωση;", "contact-phone": "Τηλέφωνο", "btn-send": "Αποστολή μέσω Email App",
-        "footer-desc": "Μεταμορφώνουμε χώρους σε ιστορίες μέσω του φωτός και του φακού."
-    }
-};
-
-// --- LOGIC ---
-let currentLang = 'en';
-
-// Language Toggle
-document.getElementById('langToggle').addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'gr' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-    });
-});
-
-// Tabs
-function openTab(tabName) {
-    document.querySelectorAll('.pricing-content').forEach(c => c.classList.remove('active'));
-    document.getElementById(tabName).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    // Default to first tab button if triggered manually without event
-    if (event) event.target.classList.add('active');
-}
-
-function toggleMobileMenu() {
-    const nav = document.getElementById('mobile-menu');
-    nav.classList.toggle('active');
-}
-
-// --- NEW FUNCTION: BOOK PACKAGE WITH ADDONS ---
-function bookPackage(packageName, basePrice, btnElement) {
-    // Find the card container
-    const card = btnElement.parentElement;
-    
-    // Find checked add-ons within this specific card
-    const checkboxes = card.querySelectorAll('input[type="checkbox"]:checked');
-    let addonsList = [];
-    let extraCost = 0;
-    
-    checkboxes.forEach(cb => {
-        addonsList.push(cb.value);
-        extraCost += 20; // Hardcoded 20 euro per addon as requested
-    });
-    
-    const total = basePrice + extraCost;
-    
-    // Construct Email Body
-    let body = `Hello,\n\nI would like to book the following:\n\n`;
-    body += `Package: ${packageName} (€${basePrice})\n`;
-    
-    if (addonsList.length > 0) {
-        body += `Add-ons: ${addonsList.join(', ')}\n`;
-    }
-    
-    body += `\nEstimated Total: €${total}\n\nPlease let me know the next steps.\n\nThank you.`;
-    
-    // Open Mail Client
-    window.location.href = `mailto:home@visualchemy.gr?subject=Booking Request: ${packageName}&body=${encodeURIComponent(body)}`;
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    // Scroll to top on reload
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0,0);
-
-    // Header Scroll
-    const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        window.scrollY > 50 ? header.classList.add('header-scrolled') : header.classList.remove('header-scrolled');
-    });
-
-    // Intersection Observer for Animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up, .why-point, .tool-card, .social-profile').forEach(el => observer.observe(el));
-    
-    // General Contact Form (Bottom of page)
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const packageVal = document.getElementById('package').value;
-        const details = document.getElementById('details').value;
-        
-        const subject = `Inquiry from ${name} - ${packageVal}`;
-        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APackage: ${packageVal}%0D%0ADetails: ${details}`;
-        
-        window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
-    });
-});
