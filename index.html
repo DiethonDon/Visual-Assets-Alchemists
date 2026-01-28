@@ -4,186 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Assets Alchemists | Real Estate Media Specialists</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- CORE VARIABLES --- */
-        :root {
-            --black: #050505;
-            --white: #FFFFFF;
-            --gray-light: #F9F9F9;
-            --gray-medium: #888888;
-            --gray-dark: #222222;
-            --accent: #D4AF37;
-            --accent-dark: #B08C2A;
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
-            --transition: all 0.6s var(--ease);
-        }
-
-        /* --- RESET & BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray-dark); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        
-        h1, h2, h3, h4, .logo { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
-        h1 { font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.5rem; }
-        h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 2rem; color: var(--black); }
-        h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 500; color: var(--black); }
-        p { font-size: 1.05rem; color: var(--gray-medium); margin-bottom: 1.5rem; font-weight: 300; line-height: 1.7; }
-        
-        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-        section { padding: 100px 0; position: relative; overflow: hidden; }
-        .tight-section { padding: 80px 0; }
-        .section-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
-        .artistic-caption { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; color: var(--accent); margin-top: 1rem; }
-
-        /* --- BUTTONS --- */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: var(--transition); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
-        .btn:hover { background: var(--black); color: var(--white); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
-        .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
-
-        /* --- HEADER --- */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 0; background: rgba(255,255,255,0.95); transition: all 0.4s ease; border-bottom: 1px solid rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
-        .header-scrolled { padding: 15px 0; box-shadow: 0 5px 30px rgba(0,0,0,0.03); }
-        .header-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; color: var(--black); text-decoration: none; font-weight: 600; letter-spacing: -0.5px; }
-        
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { text-decoration: none; color: var(--gray-dark); font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease; position: relative; }
-        nav a:hover { color: var(--accent); }
-
-        .lang-btn { border: 1px solid #ddd; background: transparent; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; margin-left: 15px; font-weight: 600; text-transform: uppercase; }
-        .lang-btn:hover { border-color: var(--black); background: var(--black); color: white; }
-
-        .header-social { display: flex; gap: 15px; margin-left: 30px; align-items: center; }
-        .social-link { color: var(--gray-dark); font-size: 1.1rem; transition: var(--transition); }
-        .social-link:hover { color: var(--accent); transform: translateY(-2px); }
-        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--black); margin-left: 20px; }
-
-        /* --- HERO --- */
-        .value-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); color: white; text-align: center; position: relative; padding-top: 80px; }
-        .value-hero-content { position: relative; z-index: 2; max-width: 1100px; padding: 40px 20px; opacity: 0; animation: fadeUp 1s var(--ease) forwards 0.2s; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .luxury-main-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 4px; text-transform: uppercase; display: block; }
-        .value-tagline { font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        
-        .value-stats { display: flex; justify-content: center; gap: 50px; margin: 60px 0; flex-wrap: wrap; }
-        .value-stat { text-align: center; }
-        .value-stat-number { font-size: 3.5rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 5px; font-family: 'Cormorant Garamond', serif; }
-        .value-stat-text { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
-
-        /* --- HEXAGONS --- */
-        .why-choose { background: var(--white); }
-        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        
-        .why-point {
-            padding: 90px 40px; 
-            background: var(--white);
-            box-shadow: 0 0 0 1px #eee; 
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            opacity: 0; transform: translateY(30px); 
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            min-height: 500px; text-align: center;
-        }
-        .why-point.visible { opacity: 1; transform: translateY(0); }
-        .why-point:hover { transform: scale(1.03); z-index: 2; background: #fafafa; }
-        .why-icon { font-size: 3.5rem; margin-bottom: 30px; color: var(--accent); }
-        .why-point h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--black); }
-
-        /* --- GALLERIES --- */
-        .gallery-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
-        .gallery-item { position: relative; height: 450px; overflow: hidden; cursor: pointer; background: #f0f0f0; opacity: 0; transform: translateY(20px); transition: var(--transition); }
-        .gallery-item.visible { opacity: 1; transform: translateY(0); }
-        
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); display: block; }
-        .gallery-item:hover img { transform: scale(1.05); }
-        
-        .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 2; }
-        
-        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
-        .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
-
-        /* --- PRICING (TABBED) --- */
-        .pricing-section { background: #111; color: var(--white); text-align: center; }
-        .pricing-section .section-intro p { color: rgba(255, 255, 255, 0.8); }
-        
-        .pricing-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
-        .tab-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: 12px 35px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: 0.3s; }
-        .tab-btn:hover { border-color: white; color: white; }
-        .tab-btn.active { background: var(--accent); border-color: var(--accent); color: black; font-weight: 600; }
-        
-        .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; animation: fadeUp 0.6s ease; }
-        .pricing-content.active { display: grid; }
-        
-        .pricing-card { background: rgba(255,255,255,0.05); padding: 50px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); display: flex; flex-direction: column; }
-        .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(255,255,255,0.08); }
-        .pricing-card.featured { border-color: var(--accent); background: rgba(212,175,55,0.08); transform: scale(1.05); z-index: 2; }
-        .pricing-card.featured:hover { transform: translateY(-10px) scale(1.05); }
-        
-        .price { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin: 25px 0; line-height: 1; }
-        .price span { font-size: 1rem; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; display: block; margin-top: 10px; letter-spacing: 1px; text-transform: uppercase; }
-        
-        .pricing-features { list-style: none; text-align: left; margin: 30px 0; padding: 0; flex-grow: 1; }
-        .pricing-features li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ccc; }
-        .pricing-features li:before { content: '✓'; color: var(--accent); margin-right: 10px; }
-
-        /* ADDONS STYLING */
-        .addons-container { text-align: left; margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
-        .addons-title { font-size: 0.85rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
-        .addon-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 0.9rem; color: rgba(255,255,255,0.8); cursor: pointer; }
-        .addon-item input { margin-right: 10px; accent-color: var(--accent); transform: scale(1.2); cursor: pointer; }
-
-        /* --- CONTACT --- */
-        .contact-section { background: white; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1000px; margin: 0 auto; }
-        .form-container { background: #f9f9f9; padding: 50px; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; background: white; font-family: inherit; font-size: 1rem; transition: 0.3s; border-radius: 4px; }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
-        textarea { height: 120px; resize: none; }
-
-        /* --- FOOTER --- */
-        footer { background: var(--black); color: #888; padding: 80px 0 40px; font-size: 0.9rem; border-top: 1px solid #222; }
-        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 60px; }
-        .footer-col h4 { color: white; text-transform: uppercase; margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col li { margin-bottom: 12px; }
-        .footer-col a { color: #888; text-decoration: none; transition: 0.3s; }
-        .footer-col a:hover { color: var(--accent); }
-
-        /* Animation */
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s var(--ease); }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .pricing-content, .gallery-masonry, .why-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 768px) {
-            .header-social, #desktop-nav { display: none; }
-            .mobile-toggle { display: block; }
-            .value-stats { flex-direction: column; gap: 30px; }
-            .pricing-content, .gallery-masonry, .why-grid, .contact-grid, .footer-content { grid-template-columns: 1fr; }
-            .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 1; }
-            
-            /* Mobile Borders & Sizing */
-            .why-point { clip-path: none; border-radius: 15px; border: 1px solid #ddd; padding: 40px; min-height: auto; }
-            .pricing-card { border: 1px solid rgba(255,255,255,0.2); }
-            .pricing-card.featured { transform: scale(1); }
-            
-            /* Mobile Nav Menu */
-            #mobile-menu {
-                display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1001;
-            }
-            #mobile-menu ul { flex-direction: column; align-items: center; gap: 20px; padding: 0; }
-            #mobile-menu.active { display: block; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -221,10 +44,10 @@
         </nav>
     </header>
 
-    <section class="value-hero" id="value">
-        <div class="value-hero-content">
-            <span class="luxury-main-title" data-i18n="hero-tag">VISUAL ALCHEMY FOR ARCHITECTURAL SOULS</span>
-            <span class="value-tagline" data-i18n="hero-sub">Where Light Writes Poetry on Stone</span>
+    <section class="value-hero tight-section" id="value">
+        <div class="container value-hero-content">
+            <div class="luxury-main-title" data-i18n="hero-tag">VISUAL ALCHEMY FOR ARCHITECTURAL SOULS</div>
+            <div class="value-tagline" data-i18n="hero-sub">Where Light Writes Poetry on Stone</div>
             <h1 data-i18n="hero-h1">We Don't Photograph Properties.<br>We Awaken Narratives.</h1>
             
             <div class="value-stats">
@@ -244,6 +67,7 @@
                 <h2 data-i18n="why-title">The Alchemist's Promise</h2>
                 <p class="artistic-caption" data-i18n="why-sub">Where technical precision dances with artistic soul.</p>
             </div>
+            
             <div class="why-grid">
                 <div class="why-point fade-up"><i class="fas fa-chess-queen why-icon"></i><h3 data-i18n="why-1-title">Strategic Narratives</h3><p data-i18n="why-1-desc">Each image is a carefully composed chapter in your property's unique story.</p></div>
                 <div class="why-point fade-up"><i class="fas fa-gift why-icon"></i><h3 data-i18n="why-2-title">Agent Success</h3><p data-i18n="why-2-desc">A complete marketing ecosystem: MLS-ready assets and social media narratives.</p></div>
@@ -255,6 +79,19 @@
         </div>
     </section>
 
+    <section class="editing-expertise tight-section">
+        <div class="tools-container">
+            <div class="section-intro">
+                <h2>Digital Alchemy Studio</h2>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card tool-fade"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
+                <div class="tool-card tool-fade"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Cinematic Video Editing.</p></div>
+                <div class="tool-card tool-fade"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
+            </div>
+        </div>
+    </section>
+
     <section class="unique-gallery" id="gallery">
         <div class="container">
             <div class="section-intro">
@@ -262,7 +99,7 @@
                 <p data-i18n="gallery-re-sub">Curated residential and commercial spaces.</p>
             </div>
             <div class="gallery-masonry">
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600596542815-e32c630bd1ba?auto=format&fit=crop&w=800&q=80" alt="Villa"><div class="gallery-overlay"><span class="gallery-category">Residential</span><h3>Cliffside Villa</h3></div></div>
+                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Villa"><div class="gallery-overlay"><span class="gallery-category">Residential</span><h3>Cliffside Villa</h3></div></div>
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Interior"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Modern Loft</h3></div></div>
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Pool"><div class="gallery-overlay"><span class="gallery-category">Estate</span><h3>Sunset Estate</h3></div></div>
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" alt="Kitchen"><div class="gallery-overlay"><span class="gallery-category">Detail</span><h3>Gourmet Kitchen</h3></div></div>
@@ -272,11 +109,10 @@
         </div>
     </section>
 
-    <section class="unique-gallery" id="corporate" style="background: #f8f8f8;">
+    <section class="unique-gallery" id="corporate" style="background: #fafafa;">
         <div class="container">
             <div class="section-intro">
                 <h2 data-i18n="gallery-corp-title">Corporate Gallery</h2>
-                <p data-i18n="gallery-corp-sub">Professional headshots and brand narratives.</p>
             </div>
             <div class="gallery-masonry">
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="CEO"><div class="gallery-overlay"><span class="gallery-category">Portrait</span><h3>Executive Profile</h3></div></div>
@@ -293,9 +129,9 @@
             </div>
             
             <div class="pricing-tabs">
-                <button class="tab-btn active" onclick="openTab('real-estate')" data-i18n="tab-re">Real Estate</button>
-                <button class="tab-btn" onclick="openTab('corporate')" data-i18n="tab-corp">Corporate</button>
-                <button class="tab-btn" onclick="openTab('product')" data-i18n="tab-prod">Product</button>
+                <button class="tab-btn active" onclick="openTab('real-estate', event)" data-i18n="tab-re">Real Estate</button>
+                <button class="tab-btn" onclick="openTab('corporate', event)" data-i18n="tab-corp">Corporate</button>
+                <button class="tab-btn" onclick="openTab('product', event)" data-i18n="tab-prod">Product</button>
             </div>
 
             <div id="real-estate" class="pricing-content active">
@@ -423,11 +259,11 @@
                     <h3 data-i18n="contact-sub">Ready to Transmute?</h3>
                     <div style="margin-bottom: 20px;">
                         <span class="contact-label">Email</span>
-                        <div style="font-size: 1.2rem;">home@visualchemy.gr</div>
+                        <div class="contact-value">home@visualchemy.gr</div>
                     </div>
                     <div style="margin-bottom: 20px;">
                         <span class="contact-label" data-i18n="contact-phone">Phone</span>
-                        <div style="font-size: 1.2rem;">+30 698 672 9570</div>
+                        <div class="contact-value">+30 698 672 9570</div>
                     </div>
                 </div>
                 <div class="form-container">
@@ -456,6 +292,34 @@
         </div>
     </section>
 
+    <section class="social-media-section tight-section" id="social">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Our Social Media Presence</h2>
+            </div>
+            <div class="social-links">
+                <div class="social-profile fade-up">
+                    <i class="fab fa-instagram social-profile-icon"></i>
+                    <div class="social-handle">@gzv.photolab</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Architecture & Real Estate Portfolio</p>
+                    <a href="https://instagram.com/gzv.photolab" target="_blank" class="btn">Follow</a>
+                </div>
+                <div class="social-profile fade-up" style="animation-delay: 0.1s;">
+                    <i class="fab fa-instagram social-profile-icon"></i>
+                    <div class="social-handle">@NR_Arts_</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Fine Art & Creative Portraiture</p>
+                    <a href="https://instagram.com/NR_Arts_" target="_blank" class="btn">Follow</a>
+                </div>
+                <div class="social-profile fade-up" style="animation-delay: 0.2s;">
+                    <i class="fab fa-instagram social-profile-icon"></i>
+                    <div class="social-handle">@VAA_Studio</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Behind The Scenes & Business</p>
+                    <a href="https://instagram.com/VAA_Studio" target="_blank" class="btn">Follow</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -477,144 +341,6 @@
         </div>
     </footer>
 
-    <script>
-        // Translations Object
-        const translations = {
-            en: {
-                "nav-value": "The Value", "nav-why": "Why Us", "nav-gallery": "Gallery", "nav-corporate": "Corporate", "nav-pricing": "Investment", "nav-contact": "Contact",
-                "hero-tag": "VISUAL ALCHEMY FOR ARCHITECTURAL SOULS", "hero-sub": "Where Light Writes Poetry on Stone", "hero-h1": "We Don't Photograph Properties.<br>We Awaken Narratives.",
-                "stat-1": "More Views", "stat-2": "Faster Sales", "stat-3": "Retention", "stat-4": "Turnaround",
-                "btn-witness": "Witness the Alchemy", "btn-begin": "Begin Your Visual Sonnet",
-                "why-title": "The Alchemist's Promise", "why-sub": "Where technical precision dances with artistic soul.",
-                "why-1-title": "Strategic Narratives", "why-1-desc": "Each image is a carefully composed chapter in your property's unique story.",
-                "why-2-title": "Agent Success", "why-2-desc": "A complete marketing ecosystem: MLS-ready assets and social media narratives.",
-                "why-3-title": "Artistic Mastery", "why-3-desc": "Unique visual vocabulary from automotive and portrait photography backgrounds.",
-                "why-4-title": "Unlimited Art", "why-4-desc": "I create, not count. Unlimited shots until we capture the magic.",
-                "why-5-title": "48-Hour Speed", "why-5-desc": "When opportunity whispers, we ensure you are shouting with visuals instantly.",
-                "why-6-title": "True Partnership", "why-6-desc": "We become an extension of your team, understanding your specific brand voice.",
-                "gallery-re-title": "Real Estate Gallery", "gallery-re-sub": "Curated residential and commercial spaces.",
-                "gallery-corp-title": "Corporate Gallery", "gallery-corp-sub": "Professional headshots and brand narratives.",
-                "pricing-title": "Investment in Excellence", 
-                "tab-re": "Real Estate", "tab-corp": "Corporate", "tab-prod": "Product",
-                "btn-select": "Select", "contact-title": "Start Your Project", "contact-sub": "Ready to Transmute?", "contact-phone": "Phone", "btn-send": "Send Request via Email App",
-                "footer-desc": "Transforming spaces into stories through light and lens."
-            },
-            gr: {
-                "nav-value": "Η Αξία", "nav-why": "Γιατί Εμάς", "nav-gallery": "Γκαλερί", "nav-corporate": "Εταιρικά", "nav-pricing": "Επένδυση", "nav-contact": "Επικοινωνία",
-                "hero-tag": "ΟΠΤΙΚΗ ΑΛΧΗΜΕΙΑ ΓΙΑ ΑΡΧΙΤΕΚΤΟΝΙΚΕΣ ΨΥΧΕΣ", "hero-sub": "Όπου το Φως Γράφει Ποίηση στην Πέτρα", "hero-h1": "Δεν Φωτογραφίζουμε Ακίνητα.<br>Ξυπνάμε τις Σιωπηλές Ιστορίες τους.",
-                "stat-1": "Προβολές", "stat-2": "Πωλήσεις", "stat-3": "Διατήρηση", "stat-4": "Παράδοση",
-                "btn-witness": "Δείτε την Αλχημεία", "btn-begin": "Ξεκινήστε",
-                "why-title": "Η Υπόσχεση του Αλχημιστή", "why-sub": "Όπου η τεχνική ακρίβεια συναντά την καλλιτεχνική ψυχή.",
-                "why-1-title": "Στρατηγική Αφήγηση", "why-1-desc": "Κάθε εικόνα είναι ένα προσεκτικά συνθεμένο κεφάλαιο στην ιστορία του ακινήτου σας.",
-                "why-2-title": "Επιτυχία Πράκτορα", "why-2-desc": "Ένα πλήρες οικοσύστημα μάρκετινγκ: αρχεία έτοιμα για MLS και social media.",
-                "why-3-title": "Καλλιτεχνική Μαεστρία", "why-3-desc": "Μοναδικό οπτικό λεξιλόγιο από υπόβαθρο αυτοκινήτων και πορτρέτων.",
-                "why-4-title": "Απεριόριστη Τέχνη", "why-4-desc": "Δημιουργώ, δεν μετράω. Απεριόριστες λήψεις μέχρι να αιχμαλωτίσουμε τη μαγεία.",
-                "why-5-title": "Ταχύτητα 48 Ωρών", "why-5-desc": "Όταν η ευκαιρία ψιθυρίζει, διασφαλίζουμε ότι φωνάζετε οπτικά αμέσως.",
-                "why-6-title": "Αληθινή Συνεργασία", "why-6-desc": "Γινόμαστε επέκταση της ομάδας σας, κατανοώντας τη φωνή του brand σας.",
-                "gallery-re-title": "Γκαλερί Ακινήτων", "gallery-re-sub": "Επιλεγμένοι οικιστικοί και επαγγελματικοί χώροι.",
-                "gallery-corp-title": "Εταιρική Γκαλερί", "gallery-corp-sub": "Επαγγελματικά πορτρέτα και αφηγήσεις brand.",
-                "pricing-title": "Επένδυση στην Αριστεία", 
-                "tab-re": "Ακίνητα", "tab-corp": "Εταιρικά", "tab-prod": "Προϊόντα",
-                "btn-select": "Επιλογή", "contact-title": "Ξεκινήστε το Έργο σας", "contact-sub": "Έτοιμοι για Μεταμόρφωση;", "contact-phone": "Τηλέφωνο", "btn-send": "Αποστολή μέσω Email App",
-                "footer-desc": "Μεταμορφώνουμε χώρους σε ιστορίες μέσω του φωτός και του φακού."
-            }
-        };
-
-        // --- LOGIC ---
-        let currentLang = 'en';
-
-        // Language Toggle
-        document.getElementById('langToggle').addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'gr' : 'en';
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-        });
-
-        // Tabs
-        function openTab(tabName) {
-            document.querySelectorAll('.pricing-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            // Default to first tab button if triggered manually without event
-            if (event) event.target.classList.add('active');
-        }
-
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobile-menu');
-            nav.classList.toggle('active');
-        }
-
-        // --- NEW FUNCTION: BOOK PACKAGE WITH ADDONS ---
-        function bookPackage(packageName, basePrice, btnElement) {
-            // Find the card container
-            const card = btnElement.parentElement;
-            
-            // Find checked add-ons within this specific card
-            const checkboxes = card.querySelectorAll('input[type="checkbox"]:checked');
-            let addonsList = [];
-            let extraCost = 0;
-            
-            checkboxes.forEach(cb => {
-                addonsList.push(cb.value);
-                extraCost += 20; // Hardcoded 20 euro per addon as requested
-            });
-            
-            const total = basePrice + extraCost;
-            
-            // Construct Email Body
-            let body = `Hello,\n\nI would like to book the following:\n\n`;
-            body += `Package: ${packageName} (€${basePrice})\n`;
-            
-            if (addonsList.length > 0) {
-                body += `Add-ons: ${addonsList.join(', ')}\n`;
-            }
-            
-            body += `\nEstimated Total: €${total}\n\nPlease let me know the next steps.\n\nThank you.`;
-            
-            // Open Mail Client
-            window.location.href = `mailto:home@visualchemy.gr?subject=Booking Request: ${packageName}&body=${encodeURIComponent(body)}`;
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Scroll to top on reload
-            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            window.scrollTo(0,0);
-
-            // Header Scroll
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                window.scrollY > 50 ? header.classList.add('header-scrolled') : header.classList.remove('header-scrolled');
-            });
-
-            // Intersection Observer for Animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-            
-            // General Contact Form (Bottom of page)
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const packageVal = document.getElementById('package').value;
-                const details = document.getElementById('details').value;
-                
-                const subject = `Inquiry from ${name} - ${packageVal}`;
-                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0APackage: ${packageVal}%0D%0ADetails: ${details}`;
-                
-                window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
