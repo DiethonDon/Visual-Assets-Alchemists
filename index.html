@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Assets Alchemists | Real Estate Media Specialists</title>
+    <title>Visual Assets Alchemists</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,6 @@
             --transition: all 0.6s var(--ease);
         }
 
-        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray-dark); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -49,9 +48,16 @@
         .header-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.6rem; color: var(--black); text-decoration: none; font-weight: 600; letter-spacing: -0.5px; }
         
-        nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { text-decoration: none; color: var(--gray-dark); font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease; position: relative; }
-        nav a:hover { color: var(--accent); }
+        /* Desktop Nav */
+        nav#desktop-nav ul { display: flex; list-style: none; gap: 30px; }
+        nav#desktop-nav a { text-decoration: none; color: var(--gray-dark); font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease; position: relative; }
+        nav#desktop-nav a:hover { color: var(--accent); }
+
+        /* Mobile Nav (Hidden by default) */
+        nav#mobile-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-top: 1px solid #eee; }
+        nav#mobile-menu ul { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0; list-style: none; }
+        nav#mobile-menu a { text-decoration: none; color: var(--black); text-transform: uppercase; font-weight: 600; font-size: 0.9rem; }
+        nav#mobile-menu.active { display: block; }
 
         .lang-btn { border: 1px solid #ddd; background: transparent; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; margin-left: 15px; font-weight: 600; text-transform: uppercase; }
         .lang-btn:hover { border-color: var(--black); background: var(--black); color: white; }
@@ -79,34 +85,29 @@
         .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
         
         .why-point {
-            padding: 90px 40px; 
+            padding: 80px 40px; 
             background: var(--white);
             box-shadow: 0 0 0 1px #eee; 
             position: relative;
             overflow: hidden;
             transition: var(--transition);
             opacity: 0; transform: translateY(30px); 
-            /* THE HEXAGON SHAPE */
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             min-height: 500px; text-align: center;
         }
         .why-point.visible { opacity: 1; transform: translateY(0); }
         .why-point:hover { transform: scale(1.03); z-index: 2; background: #fafafa; }
-        .why-point:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05)); opacity: 0; transition: var(--transition); }
-        .why-point:hover:before { opacity: 1; }
-        
-        .why-icon { font-size: 3.5rem; margin-bottom: 30px; color: var(--accent); transition: transform 0.6s var(--ease); }
-        .why-point:hover .why-icon { transform: scale(1.1) rotate(5deg); }
+        .why-icon { font-size: 3.5rem; margin-bottom: 30px; color: var(--accent); }
         .why-point h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--black); }
 
         /* --- DIGITAL ALCHEMY STUDIO (BIG CIRCLES) --- */
-        .editing-expertise { background: var(--gray-light); padding: 100px 0; }
+        .editing-expertise { background: var(--gray-light); }
         .tools-grid { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
         
         .tool-card { 
             background: var(--white); 
-            width: 380px; height: 380px; /* Big Circles */
+            width: 380px; height: 380px; 
             border-radius: 50%; 
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
             padding: 40px; text-align: center; 
@@ -116,17 +117,8 @@
             position: relative;
             overflow: hidden;
         }
-        /* Circle Reveal Animation */
-        .tool-card.visible { 
-            opacity: 1; 
-            transform: translateY(0); 
-            animation: circleReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
-        }
-        @keyframes circleReveal { 
-            0% { clip-path: circle(0% at 50% 50%); } 
-            100% { clip-path: circle(100% at 50% 50%); } 
-        }
-        
+        .tool-card.visible { opacity: 1; transform: translateY(0); animation: circleReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes circleReveal { 0% { clip-path: circle(0% at 50% 50%); } 100% { clip-path: circle(100% at 50% 50%); } }
         .tool-card:hover { transform: translateY(-10px) scale(1.02); border: 1px solid var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
         .tool-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; }
 
@@ -134,11 +126,9 @@
         .gallery-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
         .gallery-item { position: relative; height: 450px; overflow: hidden; cursor: pointer; background: #f0f0f0; opacity: 0; transform: translateY(20px); transition: var(--transition); }
         .gallery-item.visible { opacity: 1; transform: translateY(0); }
-        
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); display: block; }
         .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 2; }
-        
         .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
         .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
         .gallery-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 5px; display: block; }
@@ -154,14 +144,13 @@
         .tab-btn.active { background: var(--accent); border-color: var(--accent); color: black; font-weight: 600; }
         
         .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; animation: fadeUp 0.6s ease; }
+        /* CRITICAL: Display first tab by default */
         .pricing-content.active { display: grid; }
-
+        
         .pricing-card { background: rgba(255,255,255,0.05); padding: 50px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition); display: flex; flex-direction: column; text-align: left; }
-        .pricing-card.visible { opacity: 1; transform: translateY(0); } /* Ensuring visibility */
         .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(255,255,255,0.08); }
         .pricing-card.featured { border-color: var(--accent); background: rgba(212,175,55,0.08); transform: scale(1.05); z-index: 2; }
         .pricing-card.featured:hover { transform: translateY(-10px) scale(1.05); }
-        
         .price { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin: 20px 0; text-align: center; }
         .pricing-card h3 { text-align: center; color: white; font-size: 1.5rem; }
         .pricing-features { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
@@ -200,10 +189,6 @@
         .footer-col a:hover { color: var(--accent); }
         .footer-social a { margin-right: 15px; font-size: 1.2rem; }
 
-        /* Animation Classes */
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s var(--ease); }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .why-grid, .pricing-content, .gallery-masonry, .footer-content { grid-template-columns: 1fr 1fr; }
@@ -224,7 +209,8 @@
             
             /* Mobile Nav */
             #mobile-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1001; }
-            #mobile-menu ul { flex-direction: column; align-items: center; gap: 20px; padding: 0; }
+            #mobile-menu ul { flex-direction: column; align-items: center; gap: 20px; padding: 0; list-style: none; }
+            #mobile-menu a { text-decoration: none; color: var(--black); text-transform: uppercase; font-weight: 600; }
             #mobile-menu.active { display: block; }
         }
     </style>
@@ -304,16 +290,19 @@
         <div class="tools-container">
             <div class="section-intro"><h2>Digital Alchemy Studio</h2></div>
             <div class="tools-grid">
-                <div class="tool-card"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Cinematic Video Editing.</p></div>
-                <div class="tool-card"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
+                <div class="tool-card fade-up"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
+                <div class="tool-card fade-up"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Cinematic Video Editing.</p></div>
+                <div class="tool-card fade-up"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
             </div>
         </div>
     </section>
 
     <section class="unique-gallery" id="gallery">
         <div class="container">
-            <div class="section-intro"><h2 data-i18n="gallery-re-title">Real Estate Gallery</h2><p data-i18n="gallery-re-sub">Curated residential and commercial spaces.</p></div>
+            <div class="section-intro">
+                <h2 data-i18n="gallery-re-title">Real Estate Gallery</h2>
+                <p data-i18n="gallery-re-sub">Curated residential and commercial spaces.</p>
+            </div>
             <div class="gallery-masonry">
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Villa"><div class="gallery-overlay"><span class="gallery-category">Residential</span><h3>Cliffside Villa</h3></div></div>
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Interior"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Modern Loft</h3></div></div>
@@ -327,7 +316,9 @@
 
     <section class="unique-gallery" id="corporate" style="background: #fafafa;">
         <div class="container">
-            <div class="section-intro"><h2 data-i18n="gallery-corp-title">Corporate Gallery</h2></div>
+            <div class="section-intro">
+                <h2 data-i18n="gallery-corp-title">Corporate Gallery</h2>
+            </div>
             <div class="gallery-masonry">
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="CEO"><div class="gallery-overlay"><span class="gallery-category">Portrait</span><h3>Executive Profile</h3></div></div>
                 <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="Meeting"><div class="gallery-overlay"><span class="gallery-category">Team</span><h3>Boardroom</h3></div></div>
