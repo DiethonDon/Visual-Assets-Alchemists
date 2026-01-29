@@ -15,7 +15,6 @@
             --gray-medium: #888888;
             --gray-dark: #1a1a1a;
             --accent: #D4AF37;
-            --accent-glow: rgba(212, 175, 55, 0.3);
             --accent-dark: #B08C2A;
             --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
             --transition-speed: 0.8s;
@@ -27,17 +26,30 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray-dark); line-height: 1.6; overflow-x: hidden; }
 
         h1, h2, h3, h4, .logo { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
+        h1 { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 2rem; color: var(--black); }
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 500; color: var(--black); }
+        p { font-size: 1.05rem; color: var(--gray-medium); margin-bottom: 1.5rem; font-weight: 300; line-height: 1.7; }
+
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
         section { padding: 100px 0; position: relative; overflow: hidden; }
         .tight-section { padding: 80px 0; }
         .section-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
         .artistic-caption { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; color: var(--accent); margin-top: 1rem; }
 
-        /* --- BUTTONS --- */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: 0.3s; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
-        .btn:hover { background: var(--black); color: var(--white); transform: translateY(-3px); }
-        .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
-        .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+        /* --- ANIMATION CLASS --- */
+        /* This is the key class that makes things invisible initially */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s var(--ease-premium);
+            will-change: opacity, transform;
+        }
+        /* When JS adds this class, they appear */
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- HEADER --- */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 0; background: rgba(255,255,255,0.95); transition: 0.4s; border-bottom: 1px solid rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
@@ -62,111 +74,32 @@
         #mobile-menu a { text-decoration: none; color: var(--black); text-transform: uppercase; font-weight: 600; font-size: 0.9rem; }
         #mobile-menu.active { display: block; }
 
-        /* --- INTERACTIVE HERO SECTION (NEW) --- */
+        /* --- HERO SECTION --- */
         .value-hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #050505;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
+            background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
             color: white;
-            cursor: none; /* We hide cursor to use the spotlight, optional */
+            text-align: center;
+            padding-top: 80px;
         }
-
-        /* The Torch Light Effect */
-        .hero-spotlight {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(
-                600px circle at var(--x, 50%) var(--y, 50%), 
-                rgba(212, 175, 55, 0.15), 
-                transparent 40%
-            );
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Floating Particles */
-        .hero-particles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(var(--accent) 1px, transparent 1px),
-                radial-gradient(var(--accent) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: 0 0, 25px 25px;
-            opacity: 0.1;
-            animation: floatParticles 60s linear infinite;
-            z-index: 0;
-        }
-        @keyframes floatParticles { from { transform: translateY(0); } to { transform: translateY(-100px); } }
-
-        /* Hero Content */
-        .value-hero-content { 
-            position: relative; 
-            z-index: 2; 
-            max-width: 1100px; 
-            padding: 0 20px;
-            /* Parallax effect variables */
-            transform: translate(calc(var(--move-x) * -20px), calc(var(--move-y) * -20px));
-            transition: transform 0.1s ease-out;
-        }
+        .value-hero-content { position: relative; z-index: 2; max-width: 1100px; padding: 40px 20px; }
         
-        .luxury-main-title { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 1.5rem; 
-            color: var(--accent); 
-            margin-bottom: 1rem; 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            display: block; 
-            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.2s;
-        }
+        .luxury-main-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 4px; text-transform: uppercase; display: block; }
+        .value-tagline { font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
         
-        .value-tagline { 
-            font-family: 'Inter', sans-serif; 
-            font-size: 0.9rem; 
-            color: rgba(255,255,255,0.6); 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            margin-bottom: 2rem; 
-            display: block;
-            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.4s;
-        }
+        .value-stats { display: flex; justify-content: center; gap: 50px; margin: 60px 0; flex-wrap: wrap; }
+        .value-stat-number { font-size: 3.5rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; margin-bottom: 5px; font-family: 'Cormorant Garamond', serif; }
+        .value-stat-text { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
 
-        .hero-heading {
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.1;
-            margin-bottom: 3rem;
-            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.6s;
-        }
-        
-        /* Stats Counter */
-        .value-stats { 
-            display: flex; justify-content: center; gap: 50px; margin: 60px 0; flex-wrap: wrap; 
-            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.8s;
-        }
-        .value-stat { text-align: center; }
-        .value-stat-number { 
-            font-size: 3.5rem; 
-            font-weight: 700; 
-            color: var(--accent); 
-            display: block; 
-            line-height: 1; 
-            margin-bottom: 5px; 
-            font-family: 'Cormorant Garamond', serif; 
-            text-shadow: 0 0 20px rgba(212,175,55,0.3);
-        }
-        .value-stat-text { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: 0.3s; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+        .btn:hover { background: var(--black); color: var(--white); transform: translateY(-3px); }
+        .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+        .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+        .value-hero .btn-accent:hover { color: white; }
 
-        .value-hero .btn-accent {
-            margin-top: 20px;
-            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 1s;
-        }
-        
         /* --- HEXAGONS --- */
         .why-choose { background: var(--white); }
         .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -185,13 +118,11 @@
         .editing-expertise { background: var(--gray-light); }
         .tools-grid { display: flex; justify-content: center; gap: 40px; margin-top: 60px; flex-wrap: wrap; }
         .tool-card { 
-            background: var(--white); width: 380px; height: 380px; border-radius: 50%; 
+            background: var(--white); width: 380px; height: 380px; border-radius: 50%;
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
             padding: 40px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); position: relative; overflow: hidden;
-            clip-path: circle(0% at 50% 50%); opacity: 1 !important; transform: none !important; filter: none !important;
-            transition: clip-path 1.2s var(--ease-premium);
+            transition: transform 0.4s ease;
         }
-        .tool-card.visible { clip-path: circle(100% at 50% 50%); }
         .tool-card:hover { transform: scale(1.02); border: 1px solid var(--accent); }
         .tool-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; }
 
@@ -206,13 +137,15 @@
 
         /* --- PRICING --- */
         .pricing-section { background: #111; color: var(--white); text-align: center; }
+        .pricing-section .section-intro p { color: rgba(255, 255, 255, 0.8); }
         .pricing-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
         .tab-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); padding: 12px 35px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; transition: 0.3s; }
         .tab-btn:hover, .tab-btn.active { background: var(--accent); border-color: var(--accent); color: black; font-weight: 600; }
         
         .pricing-content { display: none; grid-template-columns: repeat(3, 1fr); gap: 30px; animation: fadeUp 0.6s ease; }
         .pricing-content.active { display: grid; }
-        
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
         .pricing-card { background: rgba(255,255,255,0.05); padding: 50px 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; display: flex; flex-direction: column; text-align: left; }
         .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent); background: rgba(255,255,255,0.08); }
         .pricing-card.featured { border-color: var(--accent); background: rgba(212,175,55,0.08); transform: scale(1.05); z-index: 2; }
@@ -244,11 +177,6 @@
         .footer-col h4 { color: white; text-transform: uppercase; margin-bottom: 20px; }
         .footer-col a { color: #888; text-decoration: none; transition: 0.3s; }
         .footer-col a:hover { color: var(--accent); }
-
-        /* Animation */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s var(--ease-premium); }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
@@ -308,10 +236,10 @@
     </header>
 
     <section class="value-hero" id="value">
-        <div class="hero-spotlight"></div> <div class="hero-particles"></div> <div class="value-hero-content">
+        <div class="value-hero-content reveal-on-scroll">
             <span class="luxury-main-title" data-i18n="hero-tag">VISUAL ALCHEMY FOR ARCHITECTURAL SOULS</span>
             <span class="value-tagline" data-i18n="hero-sub">Where Light Writes Poetry on Stone</span>
-            <h1 class="hero-heading" data-i18n="hero-h1">We Don't Photograph Properties.<br>We Awaken Narratives.</h1>
+            <h1 data-i18n="hero-h1">We Don't Photograph Properties.<br>We Awaken Narratives.</h1>
             
             <div class="value-stats">
                 <div class="value-stat"><span class="value-stat-number" data-target="61">0%</span><span class="value-stat-text" data-i18n="stat-1">More Views</span></div>
@@ -319,56 +247,59 @@
                 <div class="value-stat"><span class="value-stat-number" data-target="89">0%</span><span class="value-stat-text" data-i18n="stat-3">Retention</span></div>
                 <div class="value-stat"><span class="value-stat-number" data-target="48">0h</span><span class="value-stat-text" data-i18n="stat-4">Turnaround</span></div>
             </div>
-
-            <a href="#gallery" class="btn btn-accent" data-i18n="btn-witness">Witness the Alchemy</a>
+            <a href="#gallery" class="btn btn-accent" style="margin-top: 40px;" data-i18n="btn-witness">Witness the Alchemy</a>
         </div>
     </section>
 
-    <section class="why-choose" id="why">
+    <section class="why-choose tight-section" id="why">
         <div class="container">
             <div class="section-intro">
                 <h2 data-i18n="why-title">The Alchemist's Promise</h2>
                 <p class="artistic-caption" data-i18n="why-sub">Where technical precision dances with artistic soul.</p>
             </div>
-            
             <div class="why-grid">
-                <div class="why-point fade-up"><i class="fas fa-chess-queen why-icon"></i><h3 data-i18n="why-1-title">Strategic Narratives</h3><p data-i18n="why-1-desc">Each image is a carefully composed chapter in your property's unique story.</p></div>
-                <div class="why-point fade-up"><i class="fas fa-gift why-icon"></i><h3 data-i18n="why-2-title">Agent Success</h3><p data-i18n="why-2-desc">A complete marketing ecosystem: MLS-ready assets and social media narratives.</p></div>
-                <div class="why-point fade-up"><i class="fas fa-palette why-icon"></i><h3 data-i18n="why-3-title">Artistic Mastery</h3><p data-i18n="why-3-desc">Unique visual vocabulary from automotive and portrait photography backgrounds.</p></div>
-                <div class="why-point fade-up"><i class="fas fa-infinity why-icon"></i><h3 data-i18n="why-4-title">Unlimited Art</h3><p data-i18n="why-4-desc">I create, not count. Unlimited shots until we capture the magic.</p></div>
-                <div class="why-point fade-up"><i class="fas fa-bolt why-icon"></i><h3 data-i18n="why-5-title">48-Hour Speed</h3><p data-i18n="why-5-desc">When opportunity whispers, we ensure you are shouting with visuals instantly.</p></div>
-                <div class="why-point fade-up"><i class="fas fa-handshake why-icon"></i><h3 data-i18n="why-6-title">True Partnership</h3><p data-i18n="why-6-desc">We become an extension of your team, understanding your specific brand voice.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-chess-queen why-icon"></i><h3 data-i18n="why-1-title">Strategic Narratives</h3><p data-i18n="why-1-desc">Each image is a carefully composed chapter in your property's unique story.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-gift why-icon"></i><h3 data-i18n="why-2-title">Agent Success</h3><p data-i18n="why-2-desc">A complete marketing ecosystem: MLS-ready assets and social media narratives.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-palette why-icon"></i><h3 data-i18n="why-3-title">Artistic Mastery</h3><p data-i18n="why-3-desc">Unique visual vocabulary from automotive and portrait photography backgrounds.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-infinity why-icon"></i><h3 data-i18n="why-4-title">Unlimited Art</h3><p data-i18n="why-4-desc">I create, not count. Unlimited shots until we capture the magic.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-bolt why-icon"></i><h3 data-i18n="why-5-title">48-Hour Speed</h3><p data-i18n="why-5-desc">When opportunity whispers, we ensure you are shouting with visuals instantly.</p></div>
+                <div class="why-point reveal-on-scroll"><i class="fas fa-handshake why-icon"></i><h3 data-i18n="why-6-title">True Partnership</h3><p data-i18n="why-6-desc">We become an extension of your team, understanding your specific brand voice.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="editing-expertise tight-section">
+        <div class="tools-container">
+            <div class="section-intro"><h2>Digital Alchemy Studio</h2></div>
+            <div class="tools-grid">
+                <div class="tool-card reveal-on-scroll"><div class="tool-icon"><i class="fab fa-adobe"></i></div><h3>Creative Suite</h3><p>Mastery of Photoshop & Lightroom.</p></div>
+                <div class="tool-card reveal-on-scroll"><div class="tool-icon"><i class="fas fa-film"></i></div><h3>Premiere Pro</h3><p>Cinematic Video Editing.</p></div>
+                <div class="tool-card reveal-on-scroll"><div class="tool-icon"><i class="fas fa-magic"></i></div><h3>After Effects</h3><p>Motion Graphics & VFX.</p></div>
             </div>
         </div>
     </section>
 
     <section class="unique-gallery" id="gallery">
         <div class="container">
-            <div class="section-intro">
-                <h2 data-i18n="gallery-re-title">Real Estate Gallery</h2>
-                <p data-i18n="gallery-re-sub">Curated residential and commercial spaces.</p>
-            </div>
+            <div class="section-intro"><h2 data-i18n="gallery-re-title">Real Estate Gallery</h2><p data-i18n="gallery-re-sub">Curated residential and commercial spaces.</p></div>
             <div class="gallery-masonry">
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600596542815-e32c630bd1ba?auto=format&fit=crop&w=800&q=80" alt="Villa"><div class="gallery-overlay"><span class="gallery-category">Residential</span><h3>Cliffside Villa</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Interior"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Modern Loft</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Pool"><div class="gallery-overlay"><span class="gallery-category">Estate</span><h3>Sunset Estate</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" alt="Kitchen"><div class="gallery-overlay"><span class="gallery-category">Detail</span><h3>Gourmet Kitchen</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Living"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Open Living</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80" alt="Facade"><div class="gallery-overlay"><span class="gallery-category">Architecture</span><h3>Minimalist Facade</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Villa"><div class="gallery-overlay"><span class="gallery-category">Residential</span><h3>Cliffside Villa</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Interior"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Modern Loft</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Pool"><div class="gallery-overlay"><span class="gallery-category">Estate</span><h3>Sunset Estate</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" alt="Kitchen"><div class="gallery-overlay"><span class="gallery-category">Detail</span><h3>Gourmet Kitchen</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Living"><div class="gallery-overlay"><span class="gallery-category">Interior</span><h3>Open Living</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80" alt="Facade"><div class="gallery-overlay"><span class="gallery-category">Architecture</span><h3>Minimalist Facade</h3></div></div>
             </div>
         </div>
     </section>
 
     <section class="unique-gallery" id="corporate" style="background: #fafafa;">
         <div class="container">
-            <div class="section-intro">
-                <h2 data-i18n="gallery-corp-title">Corporate Gallery</h2>
-                <p data-i18n="gallery-corp-sub">Professional headshots and brand narratives.</p>
-            </div>
+            <div class="section-intro"><h2 data-i18n="gallery-corp-title">Corporate Gallery</h2></div>
             <div class="gallery-masonry">
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="CEO"><div class="gallery-overlay"><span class="gallery-category">Portrait</span><h3>Executive Profile</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="Meeting"><div class="gallery-overlay"><span class="gallery-category">Team</span><h3>Boardroom</h3></div></div>
-                <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Agent"><div class="gallery-overlay"><span class="gallery-category">Headshot</span><h3>Agent Profile</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="CEO"><div class="gallery-overlay"><span class="gallery-category">Portrait</span><h3>Executive Profile</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="Meeting"><div class="gallery-overlay"><span class="gallery-category">Team</span><h3>Boardroom</h3></div></div>
+                <div class="gallery-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Agent"><div class="gallery-overlay"><span class="gallery-category">Headshot</span><h3>Agent Profile</h3></div></div>
             </div>
         </div>
     </section>
@@ -380,124 +311,50 @@
             </div>
             
             <div class="pricing-tabs">
-                <button class="tab-btn active" onclick="openTab('real-estate')" data-i18n="tab-re">Real Estate</button>
-                <button class="tab-btn" onclick="openTab('corporate')" data-i18n="tab-corp">Corporate</button>
-                <button class="tab-btn" onclick="openTab('product')" data-i18n="tab-prod">Product</button>
+                <button class="tab-btn active" onclick="openTab('real-estate', event)" data-i18n="tab-re">Real Estate</button>
+                <button class="tab-btn" onclick="openTab('corporate', event)" data-i18n="tab-corp">Corporate</button>
+                <button class="tab-btn" onclick="openTab('product', event)" data-i18n="tab-prod">Product</button>
             </div>
 
             <div id="real-estate" class="pricing-content active">
-                <div class="pricing-card fade-up">
-                    <h3>Foundation</h3>
-                    <div class="price">€70</div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 25+ Photos</li>
-                        <li><i class="fas fa-check"></i> Advanced Editing</li>
-                        <li><i class="fas fa-check"></i> 48-Hour Delivery</li>
-                    </ul>
-                    <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Twilight Edit (+€20)"> Twilight Edit (+€20)</label>
-                        <label class="addon-item"><input type="checkbox" value="Virtual Staging 1 Room (+€20)"> Virtual Staging (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('RE - Foundation', 70, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;" data-i18n="btn-select">Select</button>
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>Foundation</h3><div class="price">€70</div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> 25+ Photos</li><li><i class="fas fa-check"></i> Advanced Editing</li></ul>
+                    <div class="addons-container"><div class="addons-title">Extra Add-ons</div><label class="addon-item"><input type="checkbox" value="Twilight Edit (+€20)"> Twilight Edit (+€20)</label></div>
+                    <button onclick="bookPackage('RE - Foundation', 70, this)" class="btn" style="color:white; border-color:rgba(255,255,255,0.3); width:100%;" data-i18n="btn-select">Select</button>
                 </div>
-                <div class="pricing-card featured fade-up">
-                    <h3>PRO Alchemy</h3>
-                    <div class="price">€120</div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Foundation</li>
-                        <li><i class="fas fa-check"></i> Cinematic Video</li>
-                        <li><i class="fas fa-check"></i> Drone Photography</li>
-                    </ul>
-                    <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Social Media Cut (+€20)"> Social Media Cut (+€20)</label>
-                        <label class="addon-item"><input type="checkbox" value="Floor Plan 2D (+€20)"> 2D Floor Plan (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('RE - PRO Alchemy', 120, this)" class="btn btn-accent" style="margin-top: 20px; width: 100%;" data-i18n="btn-select">Select</button>
+                <div class="pricing-card featured reveal-on-scroll">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; background: var(--accent); color: black; font-weight: bold; font-size: 0.8rem; padding: 5px; text-transform: uppercase; border-radius: 4px 4px 0 0;">Best Value</div>
+                    <h3>PRO Alchemy</h3><div class="price">€120</div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Photos + Video</li><li><i class="fas fa-check"></i> Drone Shots</li></ul>
+                    <div class="addons-container"><div class="addons-title">Extra Add-ons</div><label class="addon-item"><input type="checkbox" value="Social Cut (+€20)"> Social Cut (+€20)</label></div>
+                    <button onclick="bookPackage('RE - PRO', 120, this)" class="btn btn-accent" style="width:100%;" data-i18n="btn-select">Select</button>
                 </div>
-                <div class="pricing-card fade-up">
-                    <h3>Premium</h3>
-                    <div class="price">€250</div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Full Package</li>
-                        <li><i class="fas fa-check"></i> Virtual Staging</li>
-                        <li><i class="fas fa-check"></i> Branding Video</li>
-                    </ul>
-                     <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="3D Walkthrough (+€20)"> 3D Walkthrough (+€20)</label>
-                        <label class="addon-item"><input type="checkbox" value="Rush Delivery (+€20)"> Rush Delivery (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('RE - Premium', 250, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;" data-i18n="btn-select">Select</button>
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>Premium</h3><div class="price">€250</div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Full Package</li><li><i class="fas fa-check"></i> Virtual Staging</li></ul>
+                    <div class="addons-container"><div class="addons-title">Extra Add-ons</div><label class="addon-item"><input type="checkbox" value="Rush Delivery (+€20)"> Rush Delivery (+€20)</label></div>
+                    <button onclick="bookPackage('RE - Premium', 250, this)" class="btn" style="color:white; border-color:rgba(255,255,255,0.3); width:100%;" data-i18n="btn-select">Select</button>
                 </div>
             </div>
 
             <div id="corporate" class="pricing-content">
-                <div class="pricing-card fade-up">
-                    <h3>Headshot</h3>
-                    <div class="price">€150</div>
-                    <ul class="pricing-features"><li>30 Min Session</li><li>5 Retouched Photos</li><li>2 Outfits</li></ul>
-                     <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Extra Retouch (+€20)"> Extra Retouch (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Corp - Headshot', 150, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;">Book</button>
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>Headshot</h3><div class="price">€150</div>
+                    <ul class="pricing-features"><li>30 Min Session</li><li>5 Retouched Photos</li></ul>
+                    <div class="addons-container"><div class="addons-title">Extra Add-ons</div><label class="addon-item"><input type="checkbox" value="Extra Retouch (+€20)"> Extra Retouch (+€20)</label></div>
+                    <button onclick="bookPackage('Corp - Headshot', 150, this)" class="btn" style="color:white; border-color:rgba(255,255,255,0.3); width:100%;">Book</button>
                 </div>
-                <div class="pricing-card featured fade-up">
-                    <h3>Team</h3>
-                    <div class="price">€400</div>
-                    <ul class="pricing-features"><li>Up to 10 People</li><li>Individual Headshots</li><li>Group Photo</li></ul>
-                    <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Extra Person (+€20)"> Extra Person (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Corp - Team', 400, this)" class="btn btn-accent" style="margin-top: 20px; width: 100%;">Book</button>
                 </div>
-                <div class="pricing-card fade-up">
-                    <h3>Branding</h3>
-                    <div class="price">€800</div>
-                    <ul class="pricing-features"><li>Half Day Shoot</li><li>Office Action Shots</li><li>Unlimited Looks</li></ul>
-                    <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Video Intro (+€20)"> Video Intro (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Corp - Branding', 800, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;">Book</button>
-                </div>
-            </div>
 
             <div id="product" class="pricing-content">
-                <div class="pricing-card fade-up">
-                    <h3>E-Comm</h3>
-                    <div class="price">€250</div>
-                    <ul class="pricing-features"><li>10 Products</li><li>White Background</li><li>Basic Retouching</li></ul>
-                    <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Transparent PNG (+€20)"> PNG Background (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Prod - E-Comm', 250, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;">Start</button>
+                <div class="pricing-card reveal-on-scroll">
+                    <h3>E-Comm</h3><div class="price">€250</div>
+                    <ul class="pricing-features"><li>10 Products</li><li>White Background</li></ul>
+                    <div class="addons-container"><div class="addons-title">Extra Add-ons</div><label class="addon-item"><input type="checkbox" value="PNG (+€20)"> PNG (+€20)</label></div>
+                    <button onclick="bookPackage('Prod - E-Comm', 250, this)" class="btn" style="color:white; border-color:rgba(255,255,255,0.3); width:100%;">Start</button>
                 </div>
-                <div class="pricing-card featured fade-up">
-                    <h3>Lifestyle</h3>
-                    <div class="price">€550</div>
-                    <ul class="pricing-features"><li>Styled Scenes</li><li>Props Included</li><li>15 High-End Photos</li></ul>
-                     <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Extra Scene (+€20)"> Extra Scene (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Prod - Lifestyle', 550, this)" class="btn btn-accent" style="margin-top: 20px; width: 100%;">Start</button>
                 </div>
-                <div class="pricing-card fade-up">
-                    <h3>Campaign</h3>
-                    <div class="price">€1200</div>
-                    <ul class="pricing-features"><li>Full Commercial Use</li><li>Models & Locations</li><li>Video Included</li></ul>
-                     <div class="addons-container">
-                        <div class="addons-title">Extra Add-ons</div>
-                        <label class="addon-item"><input type="checkbox" value="Social Reels (+€20)"> Social Reels (+€20)</label>
-                    </div>
-                    <button onclick="bookPackage('Prod - Campaign', 1200, this)" class="btn" style="color: white; border-color: rgba(255,255,255,0.3); margin-top: 20px; width: 100%;">Start</button>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -507,26 +364,14 @@
             <div class="contact-grid">
                 <div class="contact-info">
                     <h3 data-i18n="contact-sub">Ready to Transmute?</h3>
-                    <div style="margin-bottom: 20px;">
-                        <span class="contact-label">Email</span>
-                        <div class="contact-value">home@visualchemy.gr</div>
-                    </div>
-                    <div style="margin-bottom: 20px;">
-                        <span class="contact-label" data-i18n="contact-phone">Phone</span>
-                        <div class="contact-value">+30 698 672 9570</div>
-                    </div>
+                    <div style="margin-bottom: 20px;"><span class="contact-label">Email</span><div class="contact-value">home@visualchemy.gr</div></div>
+                    <div style="margin-bottom: 20px;"><span class="contact-label" data-i18n="contact-phone">Phone</span><div class="contact-value">+30 698 672 9570</div></div>
                 </div>
                 <div class="form-container">
                     <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="details" placeholder="Tell us about your property..."></textarea>
-                        </div>
+                        <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="email" id="email" placeholder="Email Address" required></div>
+                        <div class="form-group"><textarea id="details" placeholder="Tell us about your property..."></textarea></div>
                         <button type="submit" class="btn btn-accent" style="width: 100%;" data-i18n="btn-send">Send Request via Email App</button>
                     </form>
                 </div>
@@ -534,74 +379,35 @@
         </div>
     </section>
 
+    <section class="social-media-section tight-section" id="social">
+        <div class="container">
+            <div class="section-intro"><h2>Our Social Media Presence</h2></div>
+            <div class="social-links">
+                <div class="social-profile reveal-on-scroll"><i class="fab fa-instagram social-profile-icon"></i><div class="social-handle">@gzv.photolab</div><a href="https://instagram.com/gzv.photolab" target="_blank" class="btn">Follow</a></div>
+                <div class="social-profile reveal-on-scroll" style="animation-delay:0.1s;"><i class="fab fa-instagram social-profile-icon"></i><div class="social-handle">@NR_Arts_</div><a href="https://instagram.com/NR_Arts_" target="_blank" class="btn">Follow</a></div>
+                <div class="social-profile reveal-on-scroll" style="animation-delay:0.2s;"><i class="fab fa-instagram social-profile-icon"></i><div class="social-handle">@VAA_Studio</div><a href="https://instagram.com/VAA_Studio" target="_blank" class="btn">Follow</a></div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Visual Assets Alchemists</h4>
-                    <p data-i18n="footer-desc">Transforming spaces into stories through light and lens.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <div class="header-social" style="margin: 0;">
-                        <a href="#" class="social-link" style="color: white;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" style="color: white;"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
+                <div class="footer-col"><h4>Visual Assets Alchemists</h4><p data-i18n="footer-desc">Transforming spaces into stories through light and lens.</p></div>
+                <div class="footer-col"><h4>Connect</h4><div class="header-social" style="margin:0;"><a href="#" class="social-link" style="color:white;"><i class="fab fa-instagram"></i></a></div></div>
             </div>
-            <div style="text-align: center; border-top: 1px solid #222; padding-top: 30px; color: #666; font-size: 0.8rem;">
-                &copy; 2026 Visual Assets Alchemists.
-            </div>
+            <div style="text-align:center; border-top:1px solid #222; padding-top:30px; color:#666; font-size:0.8rem;">&copy; 2026 Visual Assets Alchemists.</div>
         </div>
     </footer>
 
     <script>
         // --- TRANSLATION DATA ---
         const translations = {
-            en: {
-                "nav-value": "The Value", "nav-why": "Why Us", "nav-gallery": "Gallery", "nav-corporate": "Corporate", "nav-pricing": "Investment", "nav-contact": "Contact",
-                "hero-tag": "VISUAL ALCHEMY FOR ARCHITECTURAL SOULS", "hero-sub": "Where Light Writes Poetry on Stone", "hero-h1": "We Don't Photograph Properties.<br>We Awaken Narratives.",
-                "stat-1": "More Views", "stat-2": "Faster Sales", "stat-3": "Retention", "stat-4": "Turnaround",
-                "btn-witness": "Witness the Alchemy", "btn-begin": "Begin Your Visual Sonnet",
-                "why-title": "The Alchemist's Promise", "why-sub": "Where technical precision dances with artistic soul.",
-                "why-1-title": "Strategic Narratives", "why-1-desc": "Each image is a carefully composed chapter in your property's unique story.",
-                "why-2-title": "Agent Success", "why-2-desc": "A complete marketing ecosystem: MLS-ready assets and social media narratives.",
-                "why-3-title": "Artistic Mastery", "why-3-desc": "Unique visual vocabulary from automotive and portrait photography backgrounds.",
-                "why-4-title": "Unlimited Art", "why-4-desc": "I create, not count. Unlimited shots until we capture the magic.",
-                "why-5-title": "48-Hour Speed", "why-5-desc": "When opportunity whispers, we ensure you are shouting with visuals instantly.",
-                "why-6-title": "True Partnership", "why-6-desc": "We become an extension of your team, understanding your specific brand voice.",
-                "gallery-re-title": "Real Estate Gallery", "gallery-re-sub": "Curated residential and commercial spaces.",
-                "gallery-corp-title": "Corporate Gallery", "gallery-corp-sub": "Professional headshots and brand narratives.",
-                "pricing-title": "Investment in Excellence", 
-                "tab-re": "Real Estate", "tab-corp": "Corporate", "tab-prod": "Product",
-                "btn-select": "Select", "contact-title": "Start Your Project", "contact-sub": "Ready to Transmute?", "contact-phone": "Phone", "btn-send": "Send Request via Email App",
-                "footer-desc": "Transforming spaces into stories through light and lens."
-            },
-            gr: {
-                "nav-value": "Η Αξία", "nav-why": "Γιατί Εμάς", "nav-gallery": "Γκαλερί", "nav-corporate": "Εταιρικά", "nav-pricing": "Επένδυση", "nav-contact": "Επικοινωνία",
-                "hero-tag": "ΟΠΤΙΚΗ ΑΛΧΗΜΕΙΑ ΓΙΑ ΑΡΧΙΤΕΚΤΟΝΙΚΕΣ ΨΥΧΕΣ", "hero-sub": "Όπου το Φως Γράφει Ποίηση στην Πέτρα", "hero-h1": "Δεν Φωτογραφίζουμε Ακίνητα.<br>Ξυπνάμε τις Σιωπηλές Ιστορίες τους.",
-                "stat-1": "Προβολές", "stat-2": "Πωλήσεις", "stat-3": "Διατήρηση", "stat-4": "Παράδοση",
-                "btn-witness": "Δείτε την Αλχημεία", "btn-begin": "Ξεκινήστε",
-                "why-title": "Η Υπόσχεση του Αλχημιστή", "why-sub": "Όπου η τεχνική ακρίβεια συναντά την καλλιτεχνική ψυχή.",
-                "why-1-title": "Στρατηγική Αφήγηση", "why-1-desc": "Κάθε εικόνα είναι ένα προσεκτικά συνθεμένο κεφάλαιο στην ιστορία του ακινήτου σας.",
-                "why-2-title": "Επιτυχία Πράκτορα", "why-2-desc": "Ένα πλήρες οικοσύστημα μάρκετινγκ: αρχεία έτοιμα για MLS και social media.",
-                "why-3-title": "Καλλιτεχνική Μαεστρία", "why-3-desc": "Μοναδικό οπτικό λεξιλόγιο από υπόβαθρο αυτοκινήτων και πορτρέτων.",
-                "why-4-title": "Απεριόριστη Τέχνη", "why-4-desc": "Δημιουργώ, δεν μετράω. Απεριόριστες λήψεις μέχρι να αιχμαλωτίσουμε τη μαγεία.",
-                "why-5-title": "Ταχύτητα 48 Ωρών", "why-5-desc": "Όταν η ευκαιρία ψιθυρίζει, διασφαλίζουμε ότι φωνάζετε οπτικά αμέσως.",
-                "why-6-title": "Αληθινή Συνεργασία", "why-6-desc": "Γινόμαστε επέκταση της ομάδας σας, κατανοώντας τη φωνή του brand σας.",
-                "gallery-re-title": "Γκαλερί Ακινήτων", "gallery-re-sub": "Επιλεγμένοι οικιστικοί και επαγγελματικοί χώροι.",
-                "gallery-corp-title": "Εταιρική Γκαλερί", "gallery-corp-sub": "Επαγγελματικά πορτρέτα και αφηγήσεις brand.",
-                "pricing-title": "Επένδυση στην Αριστεία", 
-                "tab-re": "Ακίνητα", "tab-corp": "Εταιρικά", "tab-prod": "Προϊόντα",
-                "btn-select": "Επιλογή", "contact-title": "Ξεκινήστε το Έργο σας", "contact-sub": "Έτοιμοι για Μεταμόρφωση;", "contact-phone": "Τηλέφωνο", "btn-send": "Αποστολή μέσω Email App",
-                "footer-desc": "Μεταμορφώνουμε χώρους σε ιστορίες μέσω του φωτός και του φακού."
-            }
+            en: { "nav-value":"The Value", "nav-why":"Why Us", "nav-gallery":"Gallery", "nav-pricing":"Investment", "nav-contact":"Contact", "hero-tag":"VISUAL ALCHEMY FOR ARCHITECTURAL SOULS", "hero-sub":"Where Light Writes Poetry on Stone", "hero-h1":"We Don't Photograph Properties.<br>We Awaken Narratives.", "stat-1":"More Views", "stat-2":"Faster Sales", "stat-3":"Retention", "stat-4":"Turnaround", "btn-witness":"Witness the Alchemy", "why-title":"The Alchemist's Promise", "why-sub":"Where technical precision dances with artistic soul.", "gallery-re-title":"Real Estate Gallery", "gallery-re-sub":"Curated residential and commercial spaces.", "gallery-corp-title":"Corporate Gallery", "pricing-title":"Investment in Excellence", "tab-re":"Real Estate", "tab-corp":"Corporate", "tab-prod":"Product", "btn-select":"Select", "contact-title":"Start Your Project", "contact-sub":"Ready to Transmute?", "contact-phone":"Phone", "btn-send":"Send Request via Email App", "footer-desc":"Transforming spaces into stories through light and lens." },
+            gr: { "nav-value":"Η Αξία", "nav-why":"Γιατί Εμάς", "nav-gallery":"Γκαλερί", "nav-pricing":"Επένδυση", "nav-contact":"Επικοινωνία", "hero-tag":"ΟΠΤΙΚΗ ΑΛΧΗΜΕΙΑ", "hero-sub":"Όπου το Φως Γράφει Ποίηση", "hero-h1":"Δεν Φωτογραφίζουμε Ακίνητα.<br>Ξυπνάμε τις Σιωπηλές Ιστορίες τους.", "stat-1":"Προβολές", "stat-2":"Πωλήσεις", "stat-3":"Διατήρηση", "stat-4":"Παράδοση", "btn-witness":"Δείτε την Αλχημεία", "why-title":"Η Υπόσχεση", "why-sub":"Τεχνική ακρίβεια και καλλιτεχνική ψυχή.", "gallery-re-title":"Γκαλερί Ακινήτων", "gallery-re-sub":"Επιλεγμένοι χώροι.", "gallery-corp-title":"Εταιρική Γκαλερί", "pricing-title":"Επένδυση στην Αριστεία", "tab-re":"Ακίνητα", "tab-corp":"Εταιρικά", "tab-prod":"Προϊόντα", "btn-select":"Επιλογή", "contact-title":"Ξεκινήστε", "contact-sub":"Έτοιμοι;", "contact-phone":"Τηλέφωνο", "btn-send":"Αποστολή Email", "footer-desc":"Μεταμορφώνουμε χώρους σε ιστορίες." }
         };
 
-        // --- LOGIC ---
         let currentLang = 'en';
-
-        // Language Toggle
         document.getElementById('langToggle').addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'gr' : 'en';
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -610,45 +416,22 @@
             });
         });
 
-        // Tabs
-        function openTab(tabName) {
+        function openTab(tabName, event) {
             document.querySelectorAll('.pricing-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event) event.target.classList.add('active');
         }
 
         function toggleMobileMenu() {
-            const nav = document.getElementById('mobile-menu');
-            nav.classList.toggle('active');
+            document.getElementById('mobile-menu').classList.toggle('active');
         }
 
-        // --- MOUSE TRACKING & COUNTER ---
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            // Spotlight
-            const hero = document.querySelector('.value-hero');
-            if(hero) {
-                const rect = hero.getBoundingClientRect();
-                const xPos = x - rect.left;
-                const yPos = y - rect.top;
-                hero.style.setProperty('--x', `${xPos}px`);
-                hero.style.setProperty('--y', `${yPos}px`);
-            }
-            
-            // Parallax
-            const moveX = (x - window.innerWidth / 2) * 0.01;
-            const moveY = (y - window.innerHeight / 2) * 0.01;
-            document.querySelector('.value-hero').style.setProperty('--move-x', moveX + 'px');
-            document.querySelector('.value-hero').style.setProperty('--move-y', moveY + 'px');
-        });
-
+        // --- NEW: ANIMATE COUNTER FUNCTION (Was missing) ---
         function animateCounter(el) {
             const target = parseInt(el.getAttribute('data-target'));
             let count = 0;
-            const speed = 2000 / target;
+            const speed = 2000 / target; // Normalize speed
             
             const timer = setInterval(() => {
                 count++;
@@ -657,72 +440,52 @@
             }, speed);
         }
 
-        // --- BOOK PACKAGE WITH ADDONS ---
-        function bookPackage(packageName, basePrice, btnElement) {
-            const card = btnElement.parentElement;
-            const checkboxes = card.querySelectorAll('input[type="checkbox"]:checked');
-            let addonsList = [];
-            let extraCost = 0;
-            
-            checkboxes.forEach(cb => {
-                addonsList.push(cb.value);
-                extraCost += 20; 
-            });
-            
-            const total = basePrice + extraCost;
-            
-            let body = `Hello,\n\nI would like to book the following:\n\n`;
-            body += `Package: ${packageName} (€${basePrice})\n`;
-            
-            if (addonsList.length > 0) {
-                body += `Add-ons: ${addonsList.join(', ')}\n`;
-            }
-            
-            body += `\nEstimated Total: €${total}\n\nPlease let me know the next steps.\n\nThank you.`;
-            
-            window.location.href = `mailto:home@visualchemy.gr?subject=Booking Request: ${packageName}&body=${encodeURIComponent(body)}`;
+        function bookPackage(pkg, price, btn) {
+            const card = btn.parentElement;
+            const checks = card.querySelectorAll('input:checked');
+            let addons = [];
+            let extra = 0;
+            checks.forEach(c => { addons.push(c.value); extra += 20; });
+            const total = price + extra;
+            const body = `Booking: ${pkg} (€${price})\nAdd-ons: ${addons.join(', ')}\nTotal: €${total}`;
+            window.location.href = `mailto:home@visualchemy.gr?subject=Booking ${pkg}&body=${encodeURIComponent(body)}`;
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            if('scrollRestoration' in history) history.scrollRestoration = 'manual';
             window.scrollTo(0,0);
-
-            // Header Scroll
+            
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
                 window.scrollY > 50 ? header.classList.add('header-scrolled') : header.classList.remove('header-scrolled');
             });
 
-            // Intersection Observer
+            // FIXED: Intersection Observer Logic
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
+                entries.forEach(e => {
+                    // This toggles the class. Scroll down = add, scroll up = remove (so it re-animates)
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-visible');
                     } else {
-                        entry.target.classList.remove('is-visible');
+                        e.target.classList.remove('is-visible');
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.reveal-on-scroll, .fade-up, .why-point, .gallery-item, .pricing-card').forEach(el => observer.observe(el));
+            // Observe all elements that need animation
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
             
-            // Start counters when hero loads
+            // Trigger Counters immediately for Hero
             setTimeout(() => {
                 document.querySelectorAll('.value-stat-number').forEach(el => animateCounter(el));
             }, 1000);
 
-            // Contact Form
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const details = document.getElementById('details').value;
-                
-                const subject = `Inquiry from ${name}`;
-                const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ADetails:%0D%0A${details}`;
-                
-                window.location.href = `mailto:home@visualchemy.gr?subject=${subject}&body=${body}`;
+                const n = document.getElementById('name').value;
+                const em = document.getElementById('email').value;
+                const d = document.getElementById('details').value;
+                window.location.href = `mailto:home@visualchemy.gr?subject=Inquiry from ${n}&body=Name: ${n}%0D%0AEmail: ${em}%0D%0ADetails: ${d}`;
             });
         });
     </script>
