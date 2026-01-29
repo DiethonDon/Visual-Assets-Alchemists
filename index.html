@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE VARIABLES --- */
+       /* --- CORE VARIABLES --- */
         :root {
             --black: #050505;
             --white: #FFFFFF;
@@ -15,6 +15,7 @@
             --gray-medium: #888888;
             --gray-dark: #1a1a1a;
             --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.3);
             --accent-dark: #B08C2A;
             --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
             --transition-speed: 0.8s;
@@ -26,32 +27,17 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--white); color: var(--gray-dark); line-height: 1.6; overflow-x: hidden; }
 
         h1, h2, h3, h4, .logo { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
-        h1 { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1.5rem; }
-        h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 2rem; color: var(--black); }
-        h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 500; color: var(--black); }
-        p { font-size: 1.05rem; color: var(--gray-medium); margin-bottom: 1.5rem; font-weight: 300; line-height: 1.7; }
-
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
         section { padding: 100px 0; position: relative; overflow: hidden; }
         .tight-section { padding: 80px 0; }
         .section-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
         .artistic-caption { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; color: var(--accent); margin-top: 1rem; }
 
-        /* --- BI-DIRECTIONAL ANIMATION CLASSES --- */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            filter: blur(4px);
-            /* Smooth transition for both entering and leaving */
-            transition: all var(--transition-speed) var(--ease-premium);
-            will-change: opacity, transform, filter;
-        }
-
-        .reveal-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
-        }
+        /* --- BUTTONS --- */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: 0.3s; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
+        .btn:hover { background: var(--black); color: var(--white); transform: translateY(-3px); }
+        .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+        .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
 
         /* --- HEADER --- */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 0; background: rgba(255,255,255,0.95); transition: 0.4s; border-bottom: 1px solid rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
@@ -76,31 +62,110 @@
         #mobile-menu a { text-decoration: none; color: var(--black); text-transform: uppercase; font-weight: 600; font-size: 0.9rem; }
         #mobile-menu.active { display: block; }
 
-        /* --- HERO SECTION --- */
+        /* --- INTERACTIVE HERO SECTION (NEW) --- */
         .value-hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%);
-            color: white;
+            background-color: #050505;
+            position: relative;
+            overflow: hidden;
             text-align: center;
-            padding-top: 80px;
+            color: white;
+            cursor: none; /* We hide cursor to use the spotlight, optional */
         }
-        .value-hero-content { position: relative; z-index: 2; max-width: 1100px; padding: 40px 20px; }
-        
-        .luxury-main-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; letter-spacing: 4px; text-transform: uppercase; display: block; }
-        .value-tagline { font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        
-        .value-stats { display: flex; justify-content: center; gap: 50px; margin: 60px 0; flex-wrap: wrap; }
-        .value-stat-number { font-size: 3.5rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; margin-bottom: 5px; font-family: 'Cormorant Garamond', serif; }
-        .value-stat-text { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background: transparent; color: var(--black); border: 1px solid var(--black); font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: 0.3s; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; }
-        .btn:hover { background: var(--black); color: var(--white); transform: translateY(-3px); }
-        .btn-accent { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
-        .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
-        .value-hero .btn-accent:hover { color: white; }
+        /* The Torch Light Effect */
+        .hero-spotlight {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(
+                600px circle at var(--x, 50%) var(--y, 50%), 
+                rgba(212, 175, 55, 0.15), 
+                transparent 40%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Floating Particles */
+        .hero-particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(var(--accent) 1px, transparent 1px),
+                radial-gradient(var(--accent) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.1;
+            animation: floatParticles 60s linear infinite;
+            z-index: 0;
+        }
+        @keyframes floatParticles { from { transform: translateY(0); } to { transform: translateY(-100px); } }
+
+        /* Hero Content */
+        .value-hero-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 1100px; 
+            padding: 0 20px;
+            /* Parallax effect variables */
+            transform: translate(calc(var(--move-x) * -20px), calc(var(--move-y) * -20px));
+            transition: transform 0.1s ease-out;
+        }
+        
+        .luxury-main-title { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 1.5rem; 
+            color: var(--accent); 
+            margin-bottom: 1rem; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            display: block; 
+            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.2s;
+        }
+        
+        .value-tagline { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 0.9rem; 
+            color: rgba(255,255,255,0.6); 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            margin-bottom: 2rem; 
+            display: block;
+            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.4s;
+        }
+
+        .hero-heading {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.6s;
+        }
+
+        /* Stats Counter */
+        .value-stats { 
+            display: flex; justify-content: center; gap: 50px; margin: 60px 0; flex-wrap: wrap; 
+            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 0.8s;
+        }
+        .value-stat { text-align: center; }
+        .value-stat-number { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            color: var(--accent); 
+            display: block; 
+            line-height: 1; 
+            margin-bottom: 5px; 
+            font-family: 'Cormorant Garamond', serif; 
+            text-shadow: 0 0 20px rgba(212,175,55,0.3);
+        }
+        .value-stat-text { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); }
+
+        .value-hero .btn-accent {
+            margin-top: 20px;
+            opacity: 0; animation: fadeUp 1s var(--ease-premium) forwards 1s;
+        }
 
         /* --- HEXAGONS --- */
         .why-choose { background: var(--white); }
@@ -695,3 +760,4 @@
     </script>
 </body>
 </html>
+
